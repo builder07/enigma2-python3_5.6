@@ -16,6 +16,7 @@ from Components.config import config, ConfigYesNo, ConfigIP, NoSave, ConfigText,
 from Components.ConfigList import ConfigListScreen
 from Components.PluginComponent import plugins
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
+from Components.config import config
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_CURRENT_SKIN, fileExists
 from Tools.LoadPixmap import LoadPixmap
 from Plugins.Plugin import PluginDescriptor
@@ -356,10 +357,22 @@ class NameserverSetup(Screen, ConfigListScreen, HelpableScreen):
 
 	def createConfig(self):
 		self.nameservers = iNetwork.getNameserverList()
-		self.nameserverEntries = [ NoSave(ConfigIP(default=nameserver)) for nameserver in self.nameservers]
+		if config.usage.dns.value == 'google':
+			self.nameserverEntries = [ NoSave(ConfigIP(default= [8,8,8,8])), NoSave(ConfigIP(default = [8,8,4,4])) ]
+		elif config.usage.dns.value == 'cloadflare':
+			self.nameserverEntries = [ NoSave(ConfigIP(default= [1,1,1,1])), NoSave(ConfigIP(default = [1,0,0,1])) ]
+		elif config.usage.dns.value == 'opendns-familyshield':
+			self.nameserverEntries = [ NoSave(ConfigIP(default= [208,67,222,123])), NoSave(ConfigIP(default = [208,67,220,123])) ]
+		elif config.usage.dns.value == 'opendns-home':
+			self.nameserverEntries = [ NoSave(ConfigIP(default= [208,67,222,222])), NoSave(ConfigIP(default = [208,67,220,220])) ]
+		else:
+			self.nameserverEntries = [ NoSave(ConfigIP(default=nameserver)) for nameserver in self.nameservers]
+		config.usage.dns.save()
 
 	def createSetup(self):
 		self.list = []
+		self.DNSEntry = getConfigListEntry(_("Nameserver configuration"), config.usage.dns)
+		self.list.append(self.DNSEntry)
 
 		i = 1
 		for x in self.nameserverEntries:
