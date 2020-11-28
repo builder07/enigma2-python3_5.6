@@ -431,7 +431,7 @@ eServiceDVD::~eServiceDVD()
 	disableSubtitles();
 }
 
-RESULT eServiceDVD::connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
+RESULT eServiceDVD::connectEvent(const sigc::slot<void(iPlayableService*,int)> &event, ePtr<eConnection> &connection)
 {
 	connection = new eConnection((iPlayableService*)this, m_event.connect(event));
 	return 0;

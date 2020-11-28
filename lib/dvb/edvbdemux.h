@@ -28,7 +28,7 @@ public:
 	RESULT getCADemuxID(uint8_t &id) { id = demux; return 0; }
 	RESULT getCAAdapterID(uint8_t &id) { id = adapter; return 0; }
 	RESULT flush();
-	RESULT connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &conn);
+	RESULT connectEvent(const sigc::slot<void,int> &event, ePtr<eConnection> &conn);
 	int openDVR(int flags);
 
 	int getRefCount() { return ref; }
@@ -55,7 +55,7 @@ private:
 	int m_pvr_fd;
 	friend class eAMLTSMPEGDecoder;
 #endif
-	sigc::signal1<void, int> m_event;
+	sigc::signal<void, int> m_event;
 
 	int openDemux(void);
 };
