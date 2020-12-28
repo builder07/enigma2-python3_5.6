@@ -216,7 +216,7 @@ void eDVBCISession::createSession(eDVBCISlot *slot, const unsigned char *resourc
 	case 0x00100041:
 //		session=new eDVBCIAuthSession;
 		eDebug("[CI SESS] AuthSession");
-//		break;
+		[[fallthrough]];
 	case 0x00240041:
 		if (!eDVBCIInterfaces::getInstance()->isClientConnected())
 		{
