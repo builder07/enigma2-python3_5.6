@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 import threading, urllib, os, shutil, tempfile
 from json import loads
 from enigma import eDVBDB, eEPGCache

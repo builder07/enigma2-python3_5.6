@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 
 from Screens.Wizard import WizardSummary
 from Screens.WizardLanguage import WizardLanguage

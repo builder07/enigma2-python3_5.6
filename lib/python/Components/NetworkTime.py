@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from Components.Console import Console
 from Components.config import config
 from enigma import eTimer, eDVBLocalTimeHandler, eEPGCache

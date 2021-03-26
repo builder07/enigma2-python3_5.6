@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 #read the comment to this file in lib/service/iservice.h !!
 import sys
 import os

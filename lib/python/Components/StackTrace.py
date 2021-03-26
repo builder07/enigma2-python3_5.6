@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 import os
 from threading import Thread, current_thread
 from sys import _current_frames

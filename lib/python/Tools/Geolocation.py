@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from json import loads
 from urllib.request import URLError, urlopen
 

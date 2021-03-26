@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from Components.config import config, ConfigSubsection, ConfigYesNo, ConfigText, ConfigSelection, ConfigIP, ConfigInteger, ConfigSubList, ConfigClock
 from Components.SystemInfo import SystemInfo
 

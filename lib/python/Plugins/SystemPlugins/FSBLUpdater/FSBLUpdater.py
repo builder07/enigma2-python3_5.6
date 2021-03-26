@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+
 from Screens.Console import Console
 from Tools.Log import Log
 from Screens.MessageBox import MessageBox

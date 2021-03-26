@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from Components.Converter.Converter import Converter
 from Components.Element import cached
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS

@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from datasource import genericdatasource
 from satxml import satxml
 from lamedb import lamedb

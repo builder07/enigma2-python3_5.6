@@ -1,10 +1,6 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Plugins.Plugin import PluginDescriptor
-
 from Components.Label import Label
 from Components.ActionMap import ActionMap
 from Components.NimManager import nimmanager
@@ -14,7 +10,6 @@ from Components.Sources.StaticText import StaticText
 from Components.ProgressBar import ProgressBar
 from Components.Pixmap import Pixmap
 from Components.ServiceList import refreshServiceList
-
 from enigma import eCableScan, eDVBFrontendParametersCable, eTimer
 
 class CableScan:

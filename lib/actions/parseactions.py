@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 # takes a header file, outputs action ids
 
 import tokenize, sys

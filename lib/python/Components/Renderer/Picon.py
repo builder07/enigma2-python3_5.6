@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 import os, re, unicodedata
 from Components.Renderer.Renderer import Renderer
 from enigma import ePixmap

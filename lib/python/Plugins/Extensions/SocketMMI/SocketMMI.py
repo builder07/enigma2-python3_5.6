@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 from Screens.Ci import MMIDialog
 from Plugins.Extensions.SocketMMI import socketmmi
 

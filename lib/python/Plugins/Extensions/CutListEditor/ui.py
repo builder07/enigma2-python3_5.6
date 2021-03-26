@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 import bisect
 from time import sleep
 from struct import unpack, Struct

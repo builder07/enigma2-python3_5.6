@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 import os
 from bisect import insort
 from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS

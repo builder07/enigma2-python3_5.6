@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from Components.ActionMap import ActionMap
 from Components.config import config, configfile, getConfigListEntry, ConfigSubList, ConfigSubsection
 from Components.ConfigList import ConfigListScreen

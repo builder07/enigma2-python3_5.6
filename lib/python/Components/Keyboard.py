@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from os import listdir
 from Components.Console import Console
 # from Components.Language import language

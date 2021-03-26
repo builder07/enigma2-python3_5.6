@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 import sys, os, time
 import re
 from enigma import getBoxType, getBoxBrand

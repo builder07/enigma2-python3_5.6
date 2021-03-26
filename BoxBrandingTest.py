@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 import boxbranding
 
 print("getVisionVersion=%s<" %boxbranding.getVisionVersion())

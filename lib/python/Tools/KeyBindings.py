@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 from keyids import KEYIDS
 from Components.config import config
 

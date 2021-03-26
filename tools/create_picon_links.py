@@ -1,7 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
-#
 # create links for picon
 #   usage: create_picon_links lamedb
 # run in picon directory.

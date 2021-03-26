@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from Tools.Profile import profile
 from Screens.Screen import Screen
 import Screens.InfoBar

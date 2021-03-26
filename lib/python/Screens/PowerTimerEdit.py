@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.Label import Label

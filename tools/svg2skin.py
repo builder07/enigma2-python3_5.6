@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 # don't expect too much.
 # this is a really simple&stupid svg parser, which will use rectangles
 # and text fields to produce <widget> snippets for a skin.

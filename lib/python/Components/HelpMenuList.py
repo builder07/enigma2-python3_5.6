@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from Components.GUIComponent import GUIComponent
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont

@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from Components.SystemInfo import SystemInfo
 from Components.Console import Console
 import os, glob, tempfile

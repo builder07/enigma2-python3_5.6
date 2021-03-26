@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 import os
 from Components.SystemInfo import SystemInfo
 from Tools.BoundFunction import boundFunction

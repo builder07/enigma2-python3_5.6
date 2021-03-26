@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from ServiceReference import ServiceReference
 from enigma import eServiceReference
 import os

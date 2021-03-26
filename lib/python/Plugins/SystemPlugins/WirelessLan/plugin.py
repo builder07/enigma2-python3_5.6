@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from enigma import eTimer, eEnv, getBoxType
 from Screens.Screen import Screen
 from Components.ActionMap import ActionMap, NumberActionMap

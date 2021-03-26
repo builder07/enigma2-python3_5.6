@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from Tools.Profile import profile
 from enigma import eServiceReference, getBoxType, getBoxBrand
 from Tools.StbHardware import getBoxProc

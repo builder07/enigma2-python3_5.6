@@ -1,5 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
 
 from Components.Label import Label
 from Components.VolumeBar import VolumeBar

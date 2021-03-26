@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 # fake-enigma
 class slot:
 	def __init__(self):
