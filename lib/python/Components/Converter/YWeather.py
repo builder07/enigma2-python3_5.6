@@ -4,7 +4,7 @@ from Tools.Directories import fileExists, resolveFilename, SCOPE_PLUGINS
 from Components.Converter.Poll import Poll
 import time
 import os
-from urllib2 import Request, urlopen
+from urllib.request import Request, urlopen
 import socket
 
 class YWeather(Poll, Converter, object):

@@ -1,4 +1,4 @@
-from urllib2 import urlopen, URLError
+from urllib.request import urlopen, URLError
 from urllib import urlencode
 import sys
 import re

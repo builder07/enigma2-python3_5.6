@@ -5,7 +5,7 @@ from time import mktime, strftime, time, localtime
 from enigma import eTimer
 
 #for downloader
-import os, re, urllib2
+import os, re, urllib
 from enigma import eServiceReference, eDVBDB
 
 autoClientModeTimer = None
@@ -339,14 +339,14 @@ class ChannelsImporter():
 		url = "http://%s/api/saveepg" % self.getRemoteAddress()
 		print('[ChannelsImporter] saveEPGonRemoteReceiver URL: %s' % url)
 		try:
-			req = urllib2.Request(url)
-			response = urllib2.urlopen(req)
+			req = urllib.request.Request(url)
+			response = urllib.request.urlopen(req)
 			print('[ChannelsImporter] saveEPGonRemoteReceiver Response: %d, %s' % (response.getcode(), response.read().strip().replace("\r","").replace("\n","")))
-		except urllib2.HTTPError as err:
+		except urllib.error.HTTPError as err:
 			print('[ChannelsImporter] saveEPGonRemoteReceiver ERROR:',err)
-		except urllib2.URLError as err:
+		except urllib.error.URLError as err:
 			print('[ChannelsImporter] saveEPGonRemoteReceiver ERROR:',err.reason[0])
-		except urllib2 as err:
+		except urllib.error as err:
 			print('[ChannelsImporter] saveEPGonRemoteReceiver ERROR:',err)
 		except:
 			print('[ChannelsImporter] saveEPGonRemoteReceiver undefined error')
