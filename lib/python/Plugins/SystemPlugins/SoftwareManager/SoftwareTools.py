@@ -122,7 +122,7 @@ class SoftwareTools(PackageInfoHandler):
 			if self.list_updating:
 				self.available_packetlist = []
 				for x in result.splitlines():
-					tokens = x.split(' - ')
+					tokens = x.decode().split(' - ')
 					name = tokens[0].strip()
 					if not any(name.endswith(x) for x in self.unwanted_extensions):
 						l = len(tokens)
@@ -185,7 +185,7 @@ class SoftwareTools(PackageInfoHandler):
 		if result:
 			self.installed_packetlist = {}
 			for x in result.splitlines():
-				tokens = x.split(' - ')
+				tokens = x.decode().split(' - ')
 				name = tokens[0].strip()
 				if not any(name.endswith(x) for x in self.unwanted_extensions):
 					l = len(tokens)
