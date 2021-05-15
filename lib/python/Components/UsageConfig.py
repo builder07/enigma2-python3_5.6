@@ -84,7 +84,7 @@ def InitUsageConfig():
 	if getSoCFamily().startswith("bcm"):
 		config.usage.fadeout = ConfigYesNo(default=True)
 	else:
-		config.usage.fadeout = ConfigYesNo(default=False)	
+		config.usage.fadeout = ConfigYesNo(default=False)
 	config.usage.show_infobar_do_dimming = ConfigYesNo(default=False)
 	config.usage.show_infobar_dimming_speed = ConfigSelectionNumber(min=1, max=40, stepwidth=1, default=40, wraparound=True)
 	config.usage.show_infobar_on_zap = ConfigYesNo(default=True)
@@ -105,7 +105,7 @@ def InitUsageConfig():
 	if model.startswith("bey"):
 		config.usage.show_genre_info = ConfigYesNo(default=True)
 	else:
-		config.usage.show_genre_info = ConfigYesNo(default=False)	
+		config.usage.show_genre_info = ConfigYesNo(default=False)
 	config.usage.menu_show_numbers = ConfigSelection(default="no", choices=[("no", _("no")), ("menu&plugins", _("in menu and plugins")), ("menu", _("in menu only")), ("plugins", _("in plugins only"))])
 	config.usage.showScreenPath = ConfigSelection(default="small", choices=[("off", _("Disabled")), ("small", _("Small")), ("large", _("Large"))])
 	config.usage.enable_tt_caching = ConfigYesNo(default=True)
