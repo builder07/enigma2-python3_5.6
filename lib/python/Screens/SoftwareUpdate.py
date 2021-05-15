@@ -22,6 +22,7 @@ import json
 import time
 import calendar
 
+
 class UpdatePlugin(Screen, ProtectedScreen):
 	skin = """
 		<screen name="UpdatePlugin" position="center,center" size="550,300">

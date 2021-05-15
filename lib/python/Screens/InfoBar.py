@@ -37,6 +37,7 @@ brand = getBoxBrand()
 model = getBoxType()
 procmodel = getBoxProc()
 
+
 class InfoBar(InfoBarBase, InfoBarShowHide,
 	InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder, InfoBarResolutionSelection, InfoBarAspectSelection,
 	InfoBarInstantRecord, InfoBarAudioSelection, InfoBarRedButton, InfoBarTimerButton, InfoBarVmodeButton,
@@ -181,7 +182,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 	def openMoviePlayer(self, ref):
 		self.session.open(MoviePlayer, ref, slist=self.servicelist, lastservice=self.session.nav.getCurrentlyPlayingServiceOrGroup(), infobar=self)
 
-
 	def ZoomInOut(self):
 		zoomval = 0
 		if self.zoomrate > 3:
@@ -209,6 +209,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.zoomin = 1
 		if fileExists("/proc/stb/vmpeg/0/zoomrate"):
 			open("/proc/stb/vmpeg/0/zoomrate", "w").write(str(0))
+
 
 class MoviePlayer(InfoBarBase, InfoBarShowHide, InfoBarMenu, InfoBarSeek, InfoBarShowMovies, InfoBarInstantRecord, InfoBarVmodeButton, InfoBarResolutionSelection, InfoBarAspectSelection,
 		InfoBarAudioSelection, HelpableScreen, InfoBarNotifications, InfoBarServiceNotifications, InfoBarPVRState,

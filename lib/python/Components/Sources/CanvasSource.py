@@ -1,5 +1,6 @@
 from Components.Sources.Source import Source
 
+
 class CanvasSource(Source):
 	def __init__(self):
 		Source.__init__(self)

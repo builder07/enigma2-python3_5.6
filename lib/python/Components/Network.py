@@ -7,6 +7,7 @@ from Components.PluginComponent import plugins
 from Plugins.Plugin import PluginDescriptor
 from Components.config import config
 
+
 class Network:
 	def __init__(self):
 		self.ifaces = {}
@@ -513,6 +514,7 @@ class Network:
 		self.config_ready = False
 		self.msgPlugins()
 		commands = []
+
 		def buildCommands(iface):
 			commands.append((self.ifdown_bin, self.ifdown_bin, "-f", iface))
 			commands.append((self.ip_bin, self.ip_bin, "addr", "flush", "dev", iface, "scope", "global"))
@@ -671,7 +673,9 @@ class Network:
 			except KeyError:
 				pass
 
+
 iNetwork = Network()
+
 
 def InitNetwork():
 	pass

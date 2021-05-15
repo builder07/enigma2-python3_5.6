@@ -39,6 +39,8 @@ def ServiceIsEnabled(service_name):
 	return len(starter_list) > 0
 
 # Lets have some global functions to reduce python code
+
+
 class NSCommon:
 	def StartStopCallback(self, result=None, retval=None, extra_args=None):
 		time.sleep(3)
@@ -675,6 +677,7 @@ class InetdRecovery(Screen, ConfigListScreen):
 		if fileExists("/etc/init.d/inetd.busybox"):
 			commands.append('/etc/init.d/inetd.busybox restart')
 
+
 class AdapterSetup(Screen, ConfigListScreen, HelpableScreen):
 	def __init__(self, session, networkinfo, essid=None):
 		Screen.__init__(self, session)
@@ -1092,7 +1095,6 @@ class AdapterSetupConfiguration(Screen, HelpableScreen):
 		self.updateStatusbar()
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onClose.append(self.cleanup)
-
 
 	def queryWirelessDevice(self, iface):
 		try:
@@ -2580,6 +2582,7 @@ class NetworkTelnet(NSCommon, Screen):
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
 
+
 class NetworkInadyn(NSCommon, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -2691,7 +2694,6 @@ class NetworkInadyn(NSCommon, Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
-
 
 	def setupinadyn(self):
 		self.session.openWithCallback(self.updateService, NetworkInadynSetup)
@@ -2857,6 +2859,8 @@ class NetworkInadynLog(Screen):
 
 config.networkushare = ConfigSubsection()
 config.networkushare.mediafolders = NoSave(ConfigLocations(default=""))
+
+
 class NetworkuShare(NSCommon, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -3003,7 +3007,6 @@ class NetworkuShare(NSCommon, Screen):
 
 		for cb in self.onChangedEntry:
 			cb(title, status_summary, autostartstatus_summary)
-
 
 	def setupushare(self):
 		self.session.openWithCallback(self.updateService, NetworkuShareSetup)
@@ -3285,6 +3288,8 @@ class NetworkuShareLog(Screen):
 
 config.networkminidlna = ConfigSubsection()
 config.networkminidlna.mediafolders = NoSave(ConfigLocations(default=""))
+
+
 class NetworkMiniDLNA(NSCommon, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -3664,6 +3669,7 @@ class MiniDLNASelection(Screen):
 	def okClicked(self):
 		if self.filelist.canDescent():
 			self.filelist.descent()
+
 
 class NetworkMiniDLNALog(Screen):
 	def __init__(self, session):

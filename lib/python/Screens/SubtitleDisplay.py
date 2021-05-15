@@ -6,6 +6,7 @@ from sys import maxsize
 import skin
 from os import sys
 
+
 class SubtitleDisplay(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)

@@ -4,13 +4,16 @@ from enigma import eTimer, eDVBLocalTimeHandler, eEPGCache
 from Tools.StbHardware import setRTCtime
 from time import time
 
+
 def AutoNTPSync(session=None, **kwargs):
 	global ntpsyncpoller
 	ntpsyncpoller = NTPSyncPoller()
 	ntpsyncpoller.start()
 
+
 class NTPSyncPoller:
 	"""Automatically Poll NTP"""
+
 	def __init__(self):
 		# Init Timer
 		self.timer = eTimer()

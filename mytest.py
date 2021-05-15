@@ -57,8 +57,12 @@ from sys import stdout
 profile("Bouquets")
 from Components.config import config, configfile, ConfigText, ConfigYesNo, ConfigInteger, ConfigSelection, NoSave
 config.misc.load_unlinked_userbouquets = ConfigYesNo(default=True)
+
+
 def setLoadUnlinkedUserbouquets(configElement):
 	enigma.eDVBDB.getInstance().setLoadUnlinkedUserbouquets(configElement.value)
+
+
 config.misc.load_unlinked_userbouquets.addNotifier(setLoadUnlinkedUserbouquets)
 if config.clientmode.enabled.value == False:
 	enigma.eDVBDB.getInstance().reloadBouquets()
@@ -93,6 +97,7 @@ config.misc.prev_wakeup_time_type = ConfigInteger(default=0)
 # 0 = RecordTimer, 1 = ZapTimer, 2 = Plugins, 3 = WakeupTimer
 config.misc.epgcache_filename = ConfigText(default="/hdd/epg.dat", fixed_size=False)
 
+
 def setEPGCachePath(configElement):
 	if os.path.isdir(configElement.value) or os.path.islink(configElement.value):
 		configElement.value = os.path.join(configElement.value, "epg.dat")
@@ -110,6 +115,7 @@ def setEPGCachePath(configElement):
 #config.misc.standbyCounter.addNotifier(standbyCountChanged, initial_call = False)
 ####################################################
 
+
 def useSyncUsingChanged(configelement):
 	if configelement.value == "0":
 		print("[mytest] Time By: Transponder")
@@ -119,7 +125,10 @@ def useSyncUsingChanged(configelement):
 		print("[mytest] Time By: NTP")
 		enigma.eDVBLocalTimeHandler.getInstance().setUseDVBTime(False)
 		enigma.eEPGCache.getInstance().timeUpdated()
+
+
 config.misc.SyncTimeUsing.addNotifier(useSyncUsingChanged)
+
 
 def NTPserverChanged(configelement):
 	open("/etc/default/ntpdate", "w").write('NTPSERVERS="' + configelement.value + '"\n')
@@ -127,6 +136,8 @@ def NTPserverChanged(configelement):
 	from Components.Console import Console
 	Console = Console()
 	Console.ePopen('/usr/bin/ntpdate-sync')
+
+
 config.misc.NTPserver.addNotifier(NTPserverChanged, immediate_feedback=False)
 config.misc.NTPserver.callNotifiersOnSaveAndCancel = True
 
@@ -143,6 +154,7 @@ try:
 		reactor.run(installSignalHandlers=False)
 except ImportError as e:
 	print("[mytest] twisted not available")
+
 	def runReactor():
 		enigma.runMainloop()
 
@@ -172,6 +184,7 @@ from Plugins.Plugin import PluginDescriptor
 profile("misc")
 had = dict()
 
+
 def dump(dir, p=""):
 	if isinstance(dir, dict):
 		for (entry, val) in dir.items():
@@ -189,6 +202,7 @@ def dump(dir, p=""):
 # + ":" + str(dir.__class__)
 
 # display
+
 
 profile("LOAD:ScreenGlobals")
 from Screens.Globals import Globals
@@ -222,6 +236,7 @@ Screen.globalScreen = Globals()
 # .. a moment later:
 # Session.doClose:
 # * destroy screen
+
 
 class Session:
 	def __init__(self, desktop=None, summary_desktop=None, navigation=None):
@@ -400,10 +415,12 @@ class Session:
 		if self.summary is not None:
 			self.summary.show()
 
+
 profile("Standby,PowerKey")
 import Screens.Standby
 from Screens.Menu import MainMenu, mdom
 from GlobalActions import globalActionMap
+
 
 class PowerKey:
 	""" PowerKey stuff - handles the powerkey press and powerkey release actions"""
@@ -459,8 +476,10 @@ class PowerKey:
 		else:
 			return 0
 
+
 profile("Scart")
 from Screens.Scart import Scart
+
 
 class AutoScartControl:
 	def __init__(self, session):
@@ -485,6 +504,7 @@ class AutoScartControl:
 			else:
 				self.scartDialog.switchToTV()
 
+
 profile("Load:CI")
 from Screens.Ci import CiHandler
 
@@ -494,6 +514,7 @@ from Components.VolumeControl import VolumeControl
 profile("Load:StackTracePrinter")
 from Components.StackTrace import StackTracePrinter
 StackTracePrinterInst = StackTracePrinter()
+
 
 def runScreenTest():
 	config.misc.startCounter.value += 1
@@ -607,6 +628,7 @@ def runScreenTest():
 	InfoBarGenerics.saveResumePoints()
 
 	return 0
+
 
 profile("Init:skin")
 import skin

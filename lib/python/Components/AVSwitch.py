@@ -7,6 +7,7 @@ from boxbranding import getMachineBuild
 model = getBoxType()
 platform = getMachineBuild()
 
+
 class AVSwitch:
 	def setInput(self, input):
 		INPUT = {"ENCODER": 0, "SCART": 1, "AUX": 2}
@@ -66,6 +67,7 @@ class AVSwitch:
 		else:
 			value = 1 # auto
 		eAVSwitch.getInstance().setWSS(value)
+
 
 def InitAVSwitch():
 	config.av = ConfigSubsection()

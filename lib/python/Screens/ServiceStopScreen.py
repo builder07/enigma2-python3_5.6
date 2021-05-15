@@ -1,6 +1,7 @@
 
 from Screens.MessageBox import MessageBox
 
+
 class ServiceStopScreen:
 	def __init__(self):
 		try:

@@ -5,6 +5,7 @@ import os
 
 searchPaths = []
 
+
 def initPiconPaths():
 	global searchPaths
 	if os.path.isfile('/proc/mounts'):
@@ -15,8 +16,10 @@ def initPiconPaths():
 	searchPaths.append('/usr/share/enigma2/%s/')
 	searchPaths.append(resolveFilename(SCOPE_PLUGINS, '%s/'))
 
+
 class PiconUni(Renderer):
 	__module__ = __name__
+
 	def __init__(self):
 		Renderer.__init__(self)
 		self.path = 'piconUni'
@@ -86,5 +89,6 @@ class PiconUni(Renderer):
 				if os.path.isfile(pngname):
 					return pngname
 		return ''
+
 
 initPiconPaths()

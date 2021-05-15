@@ -12,6 +12,7 @@ import os
 from Tools.camcontrol import CamControl
 from enigma import eTimer, getDesktop
 
+
 class SoftcamSetup(Screen, ConfigListScreen):
 	if getDesktop(0).size().width() == 1280:
 		skin = """
@@ -41,6 +42,7 @@ class SoftcamSetup(Screen, ConfigListScreen):
 				<convert type="ConditionalShowHide"/>
 			</widget>
 		</screen>"""
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 

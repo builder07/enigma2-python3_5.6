@@ -7,6 +7,7 @@ import os
 from urllib.request import Request, urlopen
 import socket
 
+
 class YWeather(Poll, Converter, object):
 	weather_city = '2251945'
 	time_update = 20

@@ -2,6 +2,7 @@ from boxbranding import getHaveHDMI
 
 hw_info = None
 
+
 class HardwareInfo:
 	device_name = _("unavailable")
 	device_model = None

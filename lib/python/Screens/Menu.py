@@ -27,10 +27,12 @@ mdom = xml.etree.cElementTree.parse(resolveFilename(SCOPE_SKIN, 'menu.xml'))
 
 lastMenuID = None
 
+
 def default_skin():
 	for line in open("/etc/enigma2/settings"):
 		if not "config.skin.primary_skin" in line:
 			return default_skin
+
 
 def MenuEntryPixmap(entryID, png_cache, lastMenuID):
 	png = png_cache.get(entryID, None)
@@ -54,17 +56,20 @@ def MenuEntryPixmap(entryID, png_cache, lastMenuID):
 			png_cache['missing'] = png
 	return png
 
+
 def MenuEntryName(name):
 	def splitUpperCase(name, maxlen):
 		for c in range(len(name), 0, -1):
 			if name[c - 1].isupper() and c - 1 and c - 1 <= maxlen:
 				return name[:c - 1] + "-:-" + name[c - 1:]
 		return name
+
 	def splitLowerCase(name, maxlen):
 		for c in range(len(name), 0, -1):
 			if name[c - 1].islower() and c - 1 and c - 1 <= maxlen:
 				return name[:c - 1] + "-:-" + name[c - 1:]
 		return name
+
 	def splitName(name, maxlen):
 		for s in (" ", "-", "/"):
 			pos = name.rfind(s, 0, maxlen + 1)
@@ -93,6 +98,7 @@ def MenuEntryName(name):
 				break
 	return name if len(namesplit) < 2 else "\n".join(namesplit)
 
+
 class title_History():
 
 	def __init__(self):
@@ -117,6 +123,7 @@ class title_History():
 
 t_history = title_History()
 
+
 class MenuUpdater:
 	def __init__(self):
 		self.updatedMenuItems = {}
@@ -134,6 +141,7 @@ class MenuUpdater:
 
 	def getUpdatedMenu(self, id):
 		return self.updatedMenuItems[id]
+
 
 menuupdater = MenuUpdater()
 
@@ -523,6 +531,7 @@ class Menu(Screen, ProtectedScreen):
 	def key_down(self):
 		self["menu"].down()
 
+
 class MenuSort(Menu):
 	def __init__(self, session, parent):
 		self.somethingChanged = False
@@ -628,6 +637,7 @@ class MenuSort(Menu):
 			self["menu"].down()
 		else:
 			self["menu"].up()
+
 
 class AnimMain(Screen):
 
@@ -768,6 +778,7 @@ class AnimMain(Screen):
 		selection = self.tlist[idx]
 		if selection is not None:
 			selection[1]()
+
 
 class IconMain(Screen):
 
@@ -1011,6 +1022,7 @@ class IconMain(Screen):
 		selection = self.tlist[idx]
 		if selection is not None:
 			selection[1]()
+
 
 class MainMenu(Menu):
 	#add file load functions for the xml-file
