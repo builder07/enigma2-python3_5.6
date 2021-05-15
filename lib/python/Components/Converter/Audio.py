@@ -39,7 +39,7 @@ class Audio(Converter, object):
 	def hex_str2dec(self, str):
 		ret = 0
 		try:
-			ret = int(re.sub("0x","",str),16)
+			ret = int(re.sub("0x", "", str), 16)
 		except:
 			pass
 		return ret
@@ -180,7 +180,7 @@ class Audio(Converter, object):
 				line = file.readline().strip()
 				if line == "":
 					break
-				x = line.split(':',1)
+				x = line.split(':', 1)
 				if x[0] == "caid":
 					caID = x[1].strip()
 					sysID = self.getCryptSystemName(caID)
@@ -210,7 +210,7 @@ class Audio(Converter, object):
 			line = file.readline().strip()
 			if line == "":
 				break
-			x = line.split(':',1)
+			x = line.split(':', 1)
 			mo = self.pat_caid.search(line)
 			if mo:
 				caid = mo.group(1)
@@ -252,7 +252,7 @@ class Audio(Converter, object):
 			line = file.readline().strip()
 			if line == "":
 				break
-			x = line.split(':',1)
+			x = line.split(':', 1)
 			if x[0] == "source":
 				address = x[1].strip()
 				ee = 2
