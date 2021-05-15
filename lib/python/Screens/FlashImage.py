@@ -13,7 +13,13 @@ from Tools.BoundFunction import boundFunction
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS
 from Tools.Downloader import downloadWithProgress
 from Tools.Multiboot import getImagelist, getCurrentImage, getCurrentImageMode, deleteImage, restoreImages
-import os, urllib, json, time, zipfile, shutil, tempfile
+import os
+import urllib
+import json
+import time
+import zipfile
+import shutil
+import tempfile
 
 from enigma import eEPGCache, getBoxType
 

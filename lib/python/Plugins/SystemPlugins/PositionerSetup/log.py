@@ -5,7 +5,9 @@
 # print(_("Some text"))
 # because the log unit looks enough like a file!
 
-import io, sys, threading
+import io
+import sys
+import threading
 
 logfile = None
 # Need to make our operations thread-safe.

@@ -14,7 +14,9 @@ from Tools.StbHardware import getFPVersion, getBoxProc, getBoxProcType, getHWSer
 from enigma import eTimer, eLabel, eConsoleAppContainer, getDesktop, eGetEnigmaDebugLvl, getBoxType, getBoxBrand, eDVBResourceManager
 from Tools.Directories import fileExists, fileHas, pathExists
 from Components.GUIComponent import GUIComponent
-import skin, os, boxbranding
+import skin
+import os
+import boxbranding
 from Components.Console import Console
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
