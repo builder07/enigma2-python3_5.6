@@ -9,8 +9,8 @@ from enigma import eTimer
 from os import sys
 from sys import maxsize
 
-LOGPATH="/hdd/"
-LOGFILE="hdmicec.log"
+LOGPATH = "/hdd/"
+LOGFILE = "hdmicec.log"
 
 # CEC Version's table
 CEC = ["1.1","1.2","1.2a","1.3","1.3a","1.4","2.0?","unknown"]
@@ -64,7 +64,7 @@ config.hdmicec.tv_wakeup_detection = ConfigSelection(
 	"tvreportphysicaladdress": _("TV physical address report"),
 	"sourcerequest": _("Source request"),
 	"streamrequest": _("Stream request"),
-	"requestvendor":  _("Request for vendor report"),
+	"requestvendor": _("Request for vendor report"),
 	"osdnamerequest": _("OSD name request"),
 	"activity": _("Any activity"),
 	},
@@ -222,7 +222,7 @@ class HdmiCec:
 					self.wait.start(int(config.hdmicec.minimum_send_interval.value), True)
 			else:
 				eHdmiCEC.getInstance().sendMessage(address, cmd, data, len(data))
-			if config.hdmicec.debug.value in["1","3"]:
+			if config.hdmicec.debug.value in ["1","3"]:
 				self.debugTx(address, cmd, data)
 
 	def sendCmd(self):
@@ -239,8 +239,8 @@ class HdmiCec:
 		physicaladdress = eHdmiCEC.getInstance().getPhysicalAddress()
 		if devicetypeSend:
 			devicetype = eHdmiCEC.getInstance().getDeviceType()
-			return str(struct.pack('BBB', int(physicaladdress/256), int(physicaladdress%256), devicetype))
-		return str(struct.pack('BB', int(physicaladdress/256), int(physicaladdress%256)))
+			return str(struct.pack('BBB', int(physicaladdress / 256), int(physicaladdress % 256), devicetype))
+		return str(struct.pack('BB', int(physicaladdress / 256), int(physicaladdress % 256)))
 
 	def wakeupMessages(self):
 		if config.hdmicec.enabled.value:
@@ -336,7 +336,7 @@ class HdmiCec:
 				else:
 					# feature abort
 					if data[0] == '\x44':
-						print('[HdmiCec] volume forwarding not supported by device %02x'%(message.getAddress()))
+						print('[HdmiCec] volume forwarding not supported by device %02x' % (message.getAddress()))
 						self.volumeForwardingEnabled = False
 			elif cmd == 0x46: # request name
 				self.sendMessage(message.getAddress(), 'osdname')
@@ -346,7 +346,7 @@ class HdmiCec:
 				else:
 					self.volumeForwardingDestination = 0 # off: send volume keys to tv
 				if config.hdmicec.volume_forwarding.value:
-					print('[HdmiCec] volume forwarding to device %02x enabled'%(self.volumeForwardingDestination))
+					print('[HdmiCec] volume forwarding to device %02x enabled' % (self.volumeForwardingDestination))
 					self.volumeForwardingEnabled = True
 			elif cmd == 0x8f: # request power status
 				if inStandby:
@@ -457,7 +457,7 @@ class HdmiCec:
 					self.waitKeyEvent.start(int(config.hdmicec.minimum_send_interval.value), True)
 			else:
 				eHdmiCEC.getInstance().sendMessage(self.volumeForwardingDestination, cmd, data, len(data))
-			if config.hdmicec.debug.value in["2","3"]:
+			if config.hdmicec.debug.value in ["2","3"]:
 				self.debugTx(self.volumeForwardingDestination, cmd, data)
 			return 1
 		else:
@@ -473,7 +473,7 @@ class HdmiCec:
 		txt = self.now(True) + self.opCode(cmd, True) + " " + "%02X" % (cmd) + " "
 		tmp = ""
 		if len(data):
-			if cmd in[0x32, 0x47]:
+			if cmd in [0x32, 0x47]:
 				for i in range(len(data)):
 					tmp += "%s" % data[i]
 			else:
@@ -488,14 +488,14 @@ class HdmiCec:
 			txt += self.opCode(cmd) + " - "
 		else:
 			if cmd == 0:
-				txt += "<Feature Abort>" + 13*" " + "<  " + "%02X" % (cmd) + " "
+				txt += "<Feature Abort>" + 13 * " " + "<  " + "%02X" % (cmd) + " "
 			else:
 				txt += self.opCode(cmd) + " " + "%02X" % (cmd) + " "
-			for i in range(length-1):
-				if cmd in[0x32, 0x47]:
+			for i in range(length - 1):
+				if cmd in [0x32, 0x47]:
 					txt += "%s" % data[i]
 				elif cmd == 0x9e:
-					txt += "%02X" % ord(data[i]) + 3*" " + "[version: %s]" % CEC[ord(data[i])]
+					txt += "%02X" % ord(data[i]) + 3 * " " + "[version: %s]" % CEC[ord(data[i])]
 				else:
 					txt += "%02X" % ord(data[i]) + " "
 		txt += "\n"
@@ -518,15 +518,15 @@ class HdmiCec:
 		import datetime
 		now = datetime.datetime.now()
 		if fulldate:
-			return send + now.strftime("%d-%m-%Y %H:%M:%S") + 2*" "
-		return send + now.strftime("%H:%M:%S") + 2*" "
+			return send + now.strftime("%d-%m-%Y %H:%M:%S") + 2 * " "
+		return send + now.strftime("%H:%M:%S") + 2 * " "
 
 	def fdebug(self, output):
 		from Tools.Directories import pathExists
 		log_path = config.hdmicec.log_path.value
 		path = os.path.join(log_path, LOGFILE)
 		if pathExists(log_path):
-			fp=file(path,'a')
+			fp = file(path,'a')
 			fp.write(output)
 			fp.close()
 

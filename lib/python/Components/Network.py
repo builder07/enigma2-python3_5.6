@@ -107,10 +107,10 @@ class Network:
 				fp.write("auto " + ifacename + "\n")
 				self.configuredInterfaces.append(ifacename)
 			if iface['dhcp']:
-				fp.write("iface "+ ifacename +" inet dhcp\n")
+				fp.write("iface " + ifacename + " inet dhcp\n")
 				fp.write("udhcpc_opts -T1 -t9\n")
 			if not iface['dhcp']:
-				fp.write("iface "+ ifacename +" inet static\n")
+				fp.write("iface " + ifacename + " inet static\n")
 				if 'ip' in iface:
 					print(tuple(iface['ip']))
 					fp.write("	address %d.%d.%d.%d\n" % tuple(iface['ip']))
@@ -256,7 +256,7 @@ class Network:
 			if iface not in self.wlan_interfaces:
 				name = _("WLAN connection")
 				if len(self.wlan_interfaces):
-					name += " " + str(len(self.wlan_interfaces)+1)
+					name += " " + str(len(self.wlan_interfaces) + 1)
 				self.wlan_interfaces.append(iface)
 		else:
 			if iface not in self.lan_interfaces:
@@ -265,7 +265,7 @@ class Network:
 				else:
 					name = _("LAN connection")
 				if len(self.lan_interfaces) and not iface == "eth1":
-					name += " " + str(len(self.lan_interfaces)+1)
+					name += " " + str(len(self.lan_interfaces) + 1)
 				self.lan_interfaces.append(iface)
 		return name
 
@@ -485,7 +485,7 @@ class Network:
 		if self.getAdapterAttribute(iface, 'up') is True:
 			return True
 		else:
-			ret=Console().ePopen(self.ifconfig_bin + " " + iface + " up")
+			ret = Console().ePopen(self.ifconfig_bin + " " + iface + " up")
 			Console().ePopen(self.ifconfig_bin + " " + iface + " down")
 			if ret == 0:
 				return True
@@ -517,7 +517,7 @@ class Network:
 			commands.append((self.ifdown_bin, self.ifdown_bin, "-f", iface))
 			commands.append((self.ip_bin, self.ip_bin, "addr", "flush", "dev", iface, "scope", "global"))
 			#wpa_supplicant sometimes doesn't quit properly on SIGTERM
-			if os.path.exists('/var/run/wpa_supplicant/'+ iface):
+			if os.path.exists('/var/run/wpa_supplicant/' + iface):
 				commands.append("wpa_cli -i" + iface + " terminate")
 
 		if isinstance(ifaces, (list, tuple)):
@@ -584,7 +584,7 @@ class Network:
 		return False
 
 	def getWlanModuleDir(self, iface=None):
-		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and os.path.exists("/tmp/bcm/%s"%iface):
+		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and os.path.exists("/tmp/bcm/%s" % iface):
 			devicedir = self.sysfsPath("sys0") + '/device'
 		else:
 			devicedir = self.sysfsPath(iface) + '/device'
@@ -634,15 +634,15 @@ class Network:
 	def calc_netmask(self,nmask):
 		from struct import pack
 		from socket import inet_ntoa
-		mask = 1<<31
-		xnet = (1<<32)-1
+		mask = 1 << 31
+		xnet = (1 << 32) - 1
 		cidr_range = range(0, 32)
 		cidr = int(nmask)
 		if cidr not in cidr_range:
 			print('[Network] cidr invalid: %str' % cidr)
 			return None
 		else:
-			nm = ((1<<cidr)-1)<<(32-cidr)
+			nm = ((1 << cidr) - 1) << (32 - cidr)
 			netmask = str(inet_ntoa(pack('>L', nm)))
 			return netmask
 

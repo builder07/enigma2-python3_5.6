@@ -143,7 +143,7 @@ class About(Screen):
 					hddinfo += "\n"
 				hdd = hddlist[count][1]
 				if int(hdd.free()) > 1024:
-					hddinfo += formatstring % (hdd.model(), hdd.capacity(), hdd.Totalfree()/1024.0, "G", _("free"))
+					hddinfo += formatstring % (hdd.model(), hdd.capacity(), hdd.Totalfree() / 1024.0, "G", _("free"))
 				else:
 					hddinfo += formatstring % (hdd.model(), hdd.capacity(), hdd.Totalfree(), "M", _("free"))
 		else:
@@ -429,39 +429,39 @@ class Geolocation(Screen):
 		try:
 			continent = geolocation.get("continent", None)
 			if continent is not None:
-				GeolocationText +=  _("Continent: ") + continent + "\n"
+				GeolocationText += _("Continent: ") + continent + "\n"
 
 			country = geolocation.get("country", None)
 			if country is not None:
-				GeolocationText +=  _("Country: ") + country + "\n"
+				GeolocationText += _("Country: ") + country + "\n"
 
 			state = geolocation.get("regionName", None)
 			if state is not None:
-				GeolocationText +=  _("State: ") + state + "\n"
+				GeolocationText += _("State: ") + state + "\n"
 
 			city = geolocation.get("city", None)
 			if city is not None:
-				GeolocationText +=  _("City: ") + city + "\n"
+				GeolocationText += _("City: ") + city + "\n"
 
 			GeolocationText += "\n"
 
 			timezone = geolocation.get("timezone", None)
 			if timezone is not None:
-				GeolocationText +=  _("Timezone: ") + timezone + "\n"
+				GeolocationText += _("Timezone: ") + timezone + "\n"
 
 			currency = geolocation.get("currency", None)
 			if currency is not None:
-				GeolocationText +=  _("Currency: ") + currency + "\n"
+				GeolocationText += _("Currency: ") + currency + "\n"
 
 			GeolocationText += "\n"
 
 			latitude = geolocation.get("lat", None)
 			if str(float(latitude)) is not None:
-				GeolocationText +=  _("Latitude: ") + str(float(latitude)) + "\n"
+				GeolocationText += _("Latitude: ") + str(float(latitude)) + "\n"
 
 			longitude = geolocation.get("lon", None)
 			if str(float(longitude)) is not None:
-				GeolocationText +=  _("Longitude: ") + str(float(longitude)) + "\n"
+				GeolocationText += _("Longitude: ") + str(float(longitude)) + "\n"
 			self["AboutScrollLabel"] = ScrollLabel(GeolocationText)
 		except Exception as e:
 			self["AboutScrollLabel"] = ScrollLabel(_("Requires internet connection"))
@@ -599,7 +599,7 @@ class Devices(Screen):
 					continue
 				else:
 					freeline = _("Free: ") + _("full")
-				line = "%s      %s" %(hddp, freeline)
+				line = "%s      %s" % (hddp, freeline)
 				self.list.append(line)
 		self.list = '\n'.join(self.list)
 		self["hdd"].setText(self.list)
@@ -761,7 +761,7 @@ class SystemNetworkInfo(Screen):
 
 		publicip = geolocation.get("query", None)
 		if str(publicip) != "":
-			self.AboutText +=  _("Public IP: ") + str(publicip) + "\n"
+			self.AboutText += _("Public IP: ") + str(publicip) + "\n"
 
 		self.AboutText += "\n"
 
@@ -1169,9 +1169,9 @@ class MemoryInfo(Screen):
 			self['lmemvalue'].setText(lvalue)
 			self['rmemtext'].setText(rtext)
 			self['rmemvalue'].setText(rvalue)
-			self["slide"].setValue(int(100.0*(mem-free)/mem+0.25))
-			self['pfree'].setText("%.1f %s" % (100.*free/mem,'%'))
-			self['pused'].setText("%.1f %s" % (100.*(mem-free)/mem,'%'))
+			self["slide"].setValue(int(100.0 * (mem - free) / mem + 0.25))
+			self['pfree'].setText("%.1f %s" % (100. * free / mem,'%'))
+			self['pused'].setText("%.1f %s" % (100. * (mem - free) / mem,'%'))
 		except Exception as e:
 			print("[About] getMemoryInfo FAIL:", e)
 

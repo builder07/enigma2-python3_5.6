@@ -118,7 +118,7 @@ class CronTimers(Screen):
 				name = ""
 		except:
 			name = ""
-		desc = _("Current status:") + ' ' +self.summary_running
+		desc = _("Current status:") + ' ' + self.summary_running
 		for cb in self.onChangedEntry:
 			cb(name, desc)
 

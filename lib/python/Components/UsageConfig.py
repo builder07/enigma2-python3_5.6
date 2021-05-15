@@ -17,7 +17,7 @@ model = getBoxType()
 displaytype = getDisplayType()
 
 def InitUsageConfig():
-	config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
+	config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", "30" + " " + _("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 	config.usage = ConfigSubsection()
 	config.usage.dns = ConfigSelection(default="dhcp-router", choices=[("dhcp-router", _("DHCP router")), ("custom", _("Custom")), ("google", _("Google DNS")), ("cloadflare", _("Cloadfare")), ("opendns-familyshield", _("OpenDNS FamilyShield")), ("opendns-home", _("OpenDNS Home"))])
 	config.usage.subnetwork = ConfigYesNo(default=True)
@@ -158,7 +158,7 @@ def InitUsageConfig():
 		("no", _("no")), ("popup", _("With popup")), ("without popup", _("Without popup"))])
 	choicelist = [("-1", _("Disabled")), ("0", _("No timeout"))]
 	for i in [60, 300, 600, 900, 1800, 2700, 3600]:
-		m = i/60
+		m = i / 60
 		choicelist.append((str(i), ngettext("%d minute", "%d minutes", m) % m))
 	config.usage.pip_last_service_timeout = ConfigSelection(default="0", choices=choicelist)
 
@@ -906,7 +906,7 @@ def InitUsageConfig():
 	config.epg.histminutes = ConfigSelectionNumber(min=0, max=120, stepwidth=15, default=0, wraparound=True)
 	def EpgHistorySecondsChanged(configElement):
 		from enigma import eEPGCache
-		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.getValue()*60)
+		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.getValue() * 60)
 	config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
 
 	config.epg.cacheloadsched = ConfigYesNo(default=False)
@@ -1228,7 +1228,7 @@ def InitUsageConfig():
 	config.subtitles.pango_autoturnon = ConfigYesNo(default=True)
 
 	config.autolanguage = ConfigSubsection()
-	audio_language_choices=[
+	audio_language_choices = [
 		("", _("None")),
 		("orj dos ory org esl qaa und mis mul ORY ORJ Audio_ORJ", _("Original")),
 		("ara", _("Arabic")),
@@ -1314,7 +1314,7 @@ def InitUsageConfig():
 		for y in range(1, 15 if config.autolanguage.subtitle_autoselect4.value else (7 if config.autolanguage.subtitle_autoselect3.value else(4 if config.autolanguage.subtitle_autoselect2.value else (2 if config.autolanguage.subtitle_autoselect1.value else 0)))):
 			choicelist.append((str(y), ", ".join([eval("config.autolanguage.subtitle_autoselect%x.getText()" % x) for x in (y & 1, y & 2, y & 4 and 3, y & 8 and 4) if x])))
 		if config.autolanguage.subtitle_autoselect3.value:
-			choicelist.append((str(y+1), "All"))
+			choicelist.append((str(y + 1), "All"))
 		config.autolanguage.equal_languages.setChoices(choicelist, default="0")
 	config.autolanguage.equal_languages = ConfigSelection(default="0", choices=[str(x) for x in range(0, 16)])
 	config.autolanguage.subtitle_autoselect1 = ConfigSelection(choices=subtitle_language_choices, default="")
@@ -1443,18 +1443,18 @@ def patchTuxtxtConfFile(dummyConfigElement):
 					["TTFWidthFactor16",26],
 					["TTFHeightFactor16",14]]
 	elif config.usage.tuxtxt_font_and_res.value == "expert_mode":
-		tuxtxt2 = [["UseTTF",				int(config.usage.tuxtxt_UseTTF.value)],
-					["TTFBold",				int(config.usage.tuxtxt_TTFBold.value)],
-					["TTFScreenResX",		int(config.usage.tuxtxt_TTFScreenResX.value)],
-					["StartX",				config.usage.tuxtxt_StartX.value],
-					["EndX",				config.usage.tuxtxt_EndX.value],
-					["StartY",				config.usage.tuxtxt_StartY.value],
-					["EndY",				config.usage.tuxtxt_EndY.value],
-					["TTFShiftY",			int(config.usage.tuxtxt_TTFShiftY.value)],
-					["TTFShiftX",			int(config.usage.tuxtxt_TTFShiftX.value)],
-					["TTFWidthFactor16",	config.usage.tuxtxt_TTFWidthFactor16.value],
-					["TTFHeightFactor16",	config.usage.tuxtxt_TTFHeightFactor16.value]]
-	tuxtxt2.append(["CleanAlgo",			config.usage.tuxtxt_CleanAlgo.value])
+		tuxtxt2 = [["UseTTF", int(config.usage.tuxtxt_UseTTF.value)],
+					["TTFBold", int(config.usage.tuxtxt_TTFBold.value)],
+					["TTFScreenResX", int(config.usage.tuxtxt_TTFScreenResX.value)],
+					["StartX", config.usage.tuxtxt_StartX.value],
+					["EndX", config.usage.tuxtxt_EndX.value],
+					["StartY", config.usage.tuxtxt_StartY.value],
+					["EndY", config.usage.tuxtxt_EndY.value],
+					["TTFShiftY", int(config.usage.tuxtxt_TTFShiftY.value)],
+					["TTFShiftX", int(config.usage.tuxtxt_TTFShiftX.value)],
+					["TTFWidthFactor16", config.usage.tuxtxt_TTFWidthFactor16.value],
+					["TTFHeightFactor16", config.usage.tuxtxt_TTFHeightFactor16.value]]
+	tuxtxt2.append(["CleanAlgo", config.usage.tuxtxt_CleanAlgo.value])
 
 	TUXTXT_CFG_FILE = "/etc/tuxtxt/tuxtxt2.conf"
 	command = "sed -i -r '"
@@ -1464,7 +1464,7 @@ def patchTuxtxtConfFile(dummyConfigElement):
 	command += "' %s" % TUXTXT_CFG_FILE
 	for f in tuxtxt2:
 		#if keyword is not found in file, append keyword and value
-		command += " ; if ! grep -q '%s' %s ; then echo '%s %d' >> %s ; fi"	 % (f[0],TUXTXT_CFG_FILE,f[0],f[1],TUXTXT_CFG_FILE)
+		command += " ; if ! grep -q '%s' %s ; then echo '%s %d' >> %s ; fi" % (f[0],TUXTXT_CFG_FILE,f[0],f[1],TUXTXT_CFG_FILE)
 	try:
 		Console().ePopen(command)
 	except:

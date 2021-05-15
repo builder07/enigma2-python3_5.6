@@ -52,7 +52,7 @@ class HardwareInfo:
 			self.device_string = self.device_model
 
 		# only some early DMM boxes do not have HDMI hardware
-		self.device_hdmi =  getHaveHDMI() == "True"
+		self.device_hdmi = getHaveHDMI() == "True"
 
 		print("[HardwareInfo] Detected: " + self.get_device_string())
 
