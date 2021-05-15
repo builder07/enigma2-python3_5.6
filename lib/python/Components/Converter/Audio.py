@@ -173,7 +173,7 @@ class Audio(Converter, object):
 			caID = ""
 			syID = ""
 			try:
-				file = open ( "/tmp/ecm.info", "r" )
+				file = open("/tmp/ecm.info", "r")
 			except:
 				return ""
 			while True:
@@ -200,7 +200,7 @@ class Audio(Converter, object):
 
 	def getStreamInfo(self, ltype):
 		try:
-			file = open ( "/tmp/ecm.info", "r" )
+			file = open("/tmp/ecm.info", "r")
 		except:
 			return ""
 		ee = 0
@@ -227,7 +227,7 @@ class Audio(Converter, object):
 			return " "
 		else:
 			if (ltype == self.PROV_CA_ID):
-				return ( " " + self.norm_hex(caid) + " " + self.norm_hex(provid))
+				return (" " + self.norm_hex(caid) + " " + self.norm_hex(provid))
 			elif (ltype == self.PROV_ID):
 				return self.norm_hex(provid)
 			elif (ltype == self.CAID_ID):
@@ -236,7 +236,7 @@ class Audio(Converter, object):
 
 	def getSourceInfo(self, ltype):
 		try:
-			file = open ( "/tmp/ecm.info", "r" )
+			file = open("/tmp/ecm.info", "r")
 		except:
 			return ""
 		boxidString = ""
@@ -325,7 +325,7 @@ class Audio(Converter, object):
 		elif (self.type == self.PROV_CA_SOURCE) and (info.getInfo(iServiceInformation.sIsCrypted)==1):
 			first = self.getStreamInfo(self.PROV_CA_ID)
 			second = self.getSourceInfo(self.NETCARD_INFO)
-			if ( len(second.strip())>0 ):
+			if (len(second.strip())>0):
 				first = first+"  From:"+second
 			return first
 		elif (self.type == self.SOURCE) and (info.getInfo(iServiceInformation.sIsCrypted)==1):

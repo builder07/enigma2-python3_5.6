@@ -146,7 +146,7 @@ def getHotkeyFunctions():
 				twinPaths[plugin.path[24:]] += 1
 			else:
 				twinPaths[plugin.path[24:]] = 1
-			hotkey.functions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "EPG"))
+			hotkey.functions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]), "EPG"))
 			twinPlugins.append(plugin.name)
 	pluginlist = plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU])
 	pluginlist.sort(key=lambda p: p.name)
@@ -156,7 +156,7 @@ def getHotkeyFunctions():
 				twinPaths[plugin.path[24:]] += 1
 			else:
 				twinPaths[plugin.path[24:]] = 1
-			hotkey.functions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]) , "Plugins"))
+			hotkey.functions.append((plugin.name, plugin.path[24:] + "/" + str(twinPaths[plugin.path[24:]]), "Plugins"))
 			twinPlugins.append(plugin.name)
 	hotkey.functions.append((_("Main menu"), "Infobar/mainMenu", "InfoBar"))
 	hotkey.functions.append((_("Show help"), "Infobar/showHelp", "InfoBar"))

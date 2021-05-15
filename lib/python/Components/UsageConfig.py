@@ -65,7 +65,7 @@ def InitUsageConfig():
 		("keep reverseB", _("Keep service") + " + " + _("Reverse bouquet buttons"))])
 
 	choicelist = [("by skin", _("As defined by the skin"))]
-	for i in range (5,41):
+	for i in range(5,41):
 		choicelist.append((str(i)))
 	config.usage.servicelist_number_of_services = ConfigSelection(default="by skin", choices=choicelist)
 	config.usage.servicelist_number_of_services.addNotifier(refreshServiceList)
@@ -98,7 +98,7 @@ def InitUsageConfig():
 	config.usage.volume_instead_of_channelselection = ConfigYesNo(default=False)
 	config.usage.channelselection_preview = ConfigYesNo(default=False)
 	config.usage.show_spinner = ConfigYesNo(default=True)
-	config.usage.menu_sort_weight = ConfigDictionarySet(default={ "mainmenu" : {"submenu" : {} }})
+	config.usage.menu_sort_weight = ConfigDictionarySet(default={"mainmenu": {"submenu": {}}})
 	config.usage.menu_sort_mode = ConfigSelection(default="default", choices=[("a_z", _("alphabetical")), ("default", _("Default")), ("user", _("user defined")), ("user_hidden", _("user defined hidden"))])
 	if model.startswith("bey"):
 		config.usage.show_genre_info = ConfigYesNo(default=True)
@@ -149,13 +149,13 @@ def InitUsageConfig():
 		choicelist.append((str(i), ngettext("%d hour", "%d hours", h) % h))
 	config.usage.hdd_standby = ConfigSelection(default="300", choices=[("0", _("No standby"))] + choicelist)
 	config.usage.output_12V = ConfigSelection(default="do not change", choices=[
-		("do not change", _("Do not change")), ("off", _("Off")), ("on", _("On")) ])
+		("do not change", _("Do not change")), ("off", _("Off")), ("on", _("On"))])
 
 	config.usage.pip_zero_button = ConfigSelection(default="standard", choices=[
 		("standard", _("Standard")), ("swap", _("Swap PiP and main picture")),
-		("swapstop", _("Move PiP to main picture")), ("stop", _("Stop PiP")) ])
+		("swapstop", _("Move PiP to main picture")), ("stop", _("Stop PiP"))])
 	config.usage.pip_hideOnExit = ConfigSelection(default="without popup", choices=[
-		("no", _("no")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
+		("no", _("no")), ("popup", _("With popup")), ("without popup", _("Without popup"))])
 	choicelist = [("-1", _("Disabled")), ("0", _("No timeout"))]
 	for i in [60, 300, 600, 900, 1800, 2700, 3600]:
 		m = i/60
@@ -183,30 +183,30 @@ def InitUsageConfig():
 		("resume", _("Resume from last position")),
 		("beginning", _("Start from the beginning"))])
 	config.usage.on_movie_stop = ConfigSelection(default="movielist", choices=[
-		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")) ])
+		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service"))])
 	config.usage.on_movie_eof = ConfigSelection(default="movielist", choices=[
 		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")), ("pause", _("Pause movie at end")), ("playlist", _("Play next (return to movie list)")),
 		("playlistquit", _("Play next (return to previous service)")), ("loop", _("Continues play (loop)")), ("repeatcurrent", _("Repeat"))])
 	config.usage.next_movie_msg = ConfigYesNo(default=True)
 	config.usage.last_movie_played = ConfigText()
 	config.usage.leave_movieplayer_onExit = ConfigSelection(default="popup", choices=[
-		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
+		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup"))])
 
 	config.usage.setup_level = ConfigSelection(default="expert", choices=[
 		("simple", _("Normal")),
 		("intermediate", _("Advanced")),
-		("expert", _("Expert")) ])
+		("expert", _("Expert"))])
 
 	config.usage.startup_to_standby = ConfigSelection(default="no", choices=[
 		("no", _("no")),
 		("yes", _("yes")),
-		("except", _("No, except Wakeup timer")) ])
+		("except", _("No, except Wakeup timer"))])
 
 	config.usage.wakeup_enabled = ConfigSelection(default="no", choices=[
 		("no", _("no")),
 		("yes", _("yes")),
 		("standby", _("Yes, only from standby")),
-		("deepstandby", _("Yes, only from deep standby")) ])
+		("deepstandby", _("Yes, only from deep standby"))])
 	config.usage.wakeup_day = ConfigSubDict()
 	config.usage.wakeup_time = ConfigSubDict()
 	for i in range(7):
@@ -269,7 +269,7 @@ def InitUsageConfig():
 		(str(KEYIDS["KEY_INFO"]), _("Info (EPG)")),
 		(str(KEYIDS["KEY_TEXT"]), _("Teletext")),
 		(str(KEYIDS["KEY_SUBTITLE"]), _("Subtitle")),
-		(str(KEYIDS["KEY_FAVORITES"]), _("Favorites")) ])
+		(str(KEYIDS["KEY_FAVORITES"]), _("Favorites"))])
 
 	choicelist = [("0", _("Disabled"))]
 	for m in (1, 5, 10, 15, 30, 60):
@@ -293,7 +293,7 @@ def InitUsageConfig():
 		("3", "DVB-C/-T/-S"),
 		("4", "DVB-T/-C/-S"),
 		("5", "DVB-T/-S/-C"),
-		("127", _("No priority")) ])
+		("127", _("No priority"))])
 
 	def remote_fallback_changed(configElement):
 		if configElement.value:
@@ -373,7 +373,7 @@ def InitUsageConfig():
 		('barright', _("Progress bar right")),
 		('percleft', _("Percentage left")),
 		('percright', _("Percentage right")),
-		('no', _("no")) ])
+		('no', _("no"))])
 	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default=True)
 	config.usage.show_event_progress_in_servicelist.addNotifier(refreshServiceList)
 	config.usage.show_channel_numbers_in_servicelist.addNotifier(refreshServiceList)
@@ -982,7 +982,7 @@ def InitUsageConfig():
 		("0", _("None")),
 		("1", _("Boot time")),
 		("2", _("Local time")),
-		("3", _("Boot time and local time")) ])
+		("3", _("Boot time and local time"))])
 	config.crash.logtimeformat.save_forced = True
 
 	debugpath = [('/home/root/logs/', '/home/root/')]
@@ -1013,7 +1013,7 @@ def InitUsageConfig():
 	config.seek.on_pause = ConfigSelection(default="play", choices=[
 		("play", _("Play")),
 		("step", _("Single step (GOP)")),
-		("last", _("Last speed")) ])
+		("last", _("Last speed"))])
 
 	config.usage.timerlist_finished_timer_position = ConfigSelection(default="end", choices=[("beginning", _("At beginning")), ("end", _("At end"))])
 
@@ -1152,13 +1152,13 @@ def InitUsageConfig():
 		def setHlgSupport(configElement):
 			open("/proc/stb/hdmi/hlg_support", "w").write(configElement.value)
 		config.av.hlg_support = ConfigSelection(default="auto(EDID)",
-			choices=[ ("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled")) ])
+			choices=[("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled"))])
 		config.av.hlg_support.addNotifier(setHlgSupport)
 
 		def setHdr10Support(configElement):
 			open("/proc/stb/hdmi/hdr10_support", "w").write(configElement.value)
 		config.av.hdr10_support = ConfigSelection(default="auto(EDID)",
-			choices=[ ("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled")) ])
+			choices=[("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled"))])
 		config.av.hdr10_support.addNotifier(setHdr10Support)
 
 		def setDisable12Bit(configElement):
@@ -1176,9 +1176,9 @@ def InitUsageConfig():
 	config.subtitles.ttx_subtitle_colors = ConfigSelection(default="1", choices=[
 		("0", _("original")),
 		("1", _("white")),
-		("2", _("yellow")) ])
+		("2", _("yellow"))])
 	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default=False)
-	config.subtitles.ttx_subtitle_position = ConfigSelection( choices=["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"], default="50")
+	config.subtitles.ttx_subtitle_position = ConfigSelection(choices=["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"], default="50")
 	config.subtitles.subtitle_alignment = ConfigSelection(choices=[("left", _("left")), ("center", _("center")), ("right", _("right"))], default="center")
 	config.subtitles.subtitle_rewrap = ConfigYesNo(default=False)
 	config.subtitles.colourise_dialogs = ConfigYesNo(default=False)
@@ -1214,7 +1214,7 @@ def InitUsageConfig():
 	config.subtitles.pango_subtitle_colors = ConfigSelection(default="1", choices=[
 		("0", _("alternative")),
 		("1", _("white")),
-		("2", _("yellow")) ])
+		("2", _("yellow"))])
 	config.subtitles.pango_subtitle_fontswitch = ConfigYesNo(default=True)
 	config.subtitles.pango_subtitles_delay = ConfigSelection(default="0", choices=subtitle_delay_choicelist)
 	config.subtitles.pango_subtitles_fps = ConfigSelection(default="1", choices=[
@@ -1268,7 +1268,7 @@ def InitUsageConfig():
 		("tur Audio_TUR", _("Turkish")),
 		("ukr Ukr", _("Ukrainian"))]
 
-	epg_language_choices = audio_language_choices[:1] + audio_language_choices [2:]
+	epg_language_choices = audio_language_choices[:1] + audio_language_choices[2:]
 	def setEpgLanguage(configElement):
 		eServiceEvent.setEPGLanguage(configElement.value)
 	def setEpgLanguageAlternative(configElement):
@@ -1302,7 +1302,7 @@ def InitUsageConfig():
 	config.autolanguage.audio_defaultddp = ConfigYesNo(default=False)
 	config.autolanguage.audio_usecache = ConfigYesNo(default=True)
 
-	subtitle_language_choices = audio_language_choices[:1] + audio_language_choices [2:]
+	subtitle_language_choices = audio_language_choices[:1] + audio_language_choices[2:]
 	def getselectedsublanguages(range):
 		return [eval("config.autolanguage.subtitle_autoselect%x.value" % x) for x in range]
 	def autolanguagesub(configElement):
@@ -1341,8 +1341,8 @@ def InitUsageConfig():
 	config.oscaminfo.autoupdate = ConfigYesNo(default=False)
 	config.oscaminfo.username = ConfigText(default="username", fixed_size=False, visible_width=12)
 	config.oscaminfo.password = ConfigPassword(default="password", fixed_size=False)
-	config.oscaminfo.ip = ConfigIP( default=[ 127,0,0,1 ], auto_jump=True)
-	config.oscaminfo.port = ConfigInteger(default=16002, limits=(0,65536) )
+	config.oscaminfo.ip = ConfigIP(default=[127,0,0,1], auto_jump=True)
+	config.oscaminfo.port = ConfigInteger(default=16002, limits=(0,65536))
 	config.oscaminfo.intervall = ConfigSelectionNumber(min=1, max=600, stepwidth=1, default=10, wraparound=True)
 
 	config.streaming = ConfigSubsection()
@@ -1395,7 +1395,7 @@ def defaultMoviePath():
 def patchTuxtxtConfFile(dummyConfigElement):
 	print("[UsageConfig] patching tuxtxt2.conf")
 	if config.usage.tuxtxt_font_and_res.value == "X11_SD":
-		tuxtxt2 = [ ["UseTTF",0],
+		tuxtxt2 = [["UseTTF",0],
 					["TTFBold",1],
 					["TTFScreenResX",720],
 					["StartX",50],
@@ -1407,7 +1407,7 @@ def patchTuxtxtConfFile(dummyConfigElement):
 					["TTFWidthFactor16",26],
 					["TTFHeightFactor16",14]]
 	elif config.usage.tuxtxt_font_and_res.value == "TTF_SD":
-		tuxtxt2 = [ ["UseTTF",1],
+		tuxtxt2 = [["UseTTF",1],
 					["TTFBold",1],
 					["TTFScreenResX",720],
 					["StartX",50],
@@ -1419,7 +1419,7 @@ def patchTuxtxtConfFile(dummyConfigElement):
 					["TTFWidthFactor16",29],
 					["TTFHeightFactor16",14]]
 	elif config.usage.tuxtxt_font_and_res.value == "TTF_HD":
-		tuxtxt2 = [ ["UseTTF",1],
+		tuxtxt2 = [["UseTTF",1],
 					["TTFBold",0],
 					["TTFScreenResX",1280],
 					["StartX",80],
@@ -1431,7 +1431,7 @@ def patchTuxtxtConfFile(dummyConfigElement):
 					["TTFWidthFactor16",26],
 					["TTFHeightFactor16",14]]
 	elif config.usage.tuxtxt_font_and_res.value == "TTF_FHD":
-		tuxtxt2 = [ ["UseTTF",1],
+		tuxtxt2 = [["UseTTF",1],
 					["TTFBold",0],
 					["TTFScreenResX",1920],
 					["StartX",140],
@@ -1443,7 +1443,7 @@ def patchTuxtxtConfFile(dummyConfigElement):
 					["TTFWidthFactor16",26],
 					["TTFHeightFactor16",14]]
 	elif config.usage.tuxtxt_font_and_res.value == "expert_mode":
-		tuxtxt2 = [ ["UseTTF",				int(config.usage.tuxtxt_UseTTF.value)],
+		tuxtxt2 = [["UseTTF",				int(config.usage.tuxtxt_UseTTF.value)],
 					["TTFBold",				int(config.usage.tuxtxt_TTFBold.value)],
 					["TTFScreenResX",		int(config.usage.tuxtxt_TTFScreenResX.value)],
 					["StartX",				config.usage.tuxtxt_StartX.value],
@@ -1454,7 +1454,7 @@ def patchTuxtxtConfFile(dummyConfigElement):
 					["TTFShiftX",			int(config.usage.tuxtxt_TTFShiftX.value)],
 					["TTFWidthFactor16",	config.usage.tuxtxt_TTFWidthFactor16.value],
 					["TTFHeightFactor16",	config.usage.tuxtxt_TTFHeightFactor16.value]]
-	tuxtxt2.append( ["CleanAlgo",			config.usage.tuxtxt_CleanAlgo.value] )
+	tuxtxt2.append(["CleanAlgo",			config.usage.tuxtxt_CleanAlgo.value])
 
 	TUXTXT_CFG_FILE = "/etc/tuxtxt/tuxtxt2.conf"
 	command = "sed -i -r '"

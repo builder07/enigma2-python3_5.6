@@ -30,7 +30,7 @@ enigma.eTimer = eBaseImpl.eTimer
 enigma.eSocketNotifier = eBaseImpl.eSocketNotifier
 enigma.eConsoleAppContainer = eConsoleImpl.eConsoleAppContainer
 
-if getVisionVersion().startswith("10") and not fileExists ("/var/tmp/ntpv4.local") and platform != "dm4kgen":
+if getVisionVersion().startswith("10") and not fileExists("/var/tmp/ntpv4.local") and platform != "dm4kgen":
 	from Components.Console import Console
 	print("[mytest] Try load all network interfaces.")
 	Console = Console()
@@ -233,8 +233,8 @@ class Session:
 
 		self.current_dialog = None
 
-		self.dialog_stack = [ ]
-		self.summary_stack = [ ]
+		self.dialog_stack = []
+		self.summary_stack = []
 		self.summary = None
 
 		self.in_exec = False
@@ -510,7 +510,7 @@ def runScreenTest():
 
 	CiHandler.setSession(session)
 
-	screensToRun = [ p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD) ]
+	screensToRun = [p.__call__ for p in plugins.getPlugins(PluginDescriptor.WHERE_WIZARD)]
 
 	profile("wizards")
 	screensToRun += wizardManager.getWizards()
