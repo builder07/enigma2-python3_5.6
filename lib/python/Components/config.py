@@ -1472,7 +1472,7 @@ class ConfigSlider(ConfigElement):
 		self.max = limits[1]
 		self.increment = increment
 
-	def checkValues(self, value = None):
+	def checkValues(self, value=None):
 		if value is None:
 			value = self.value
 		if value < self.min:

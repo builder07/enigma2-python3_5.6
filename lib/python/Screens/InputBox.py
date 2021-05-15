@@ -9,7 +9,7 @@ from Tools.Notifications import AddPopup
 from time import time
 
 class InputBox(Screen):
-	def __init__(self, session, title = "", windowTitle = None, useableChars = None, **kwargs):
+	def __init__(self, session, title="", windowTitle=None, useableChars=None, **kwargs):
 		Screen.__init__(self, session)
 		self["text"] = Label(title)
 		self["input"] = Input(**kwargs)
@@ -86,8 +86,8 @@ class InputBox(Screen):
 		self["input"].toggleOverwrite()
 
 class PinInput(InputBox):
-	def __init__(self, session, service = "", triesEntry = None, pinList = [], popup = False, simple=True, *args, **kwargs):
-		InputBox.__init__(self, session = session, text = "    ", maxSize = True, type = Input.PIN, *args, **kwargs)
+	def __init__(self, session, service="", triesEntry=None, pinList=[], popup=False, simple=True, *args, **kwargs):
+		InputBox.__init__(self, session=session, text="    ", maxSize=True, type=Input.PIN, *args, **kwargs)
 
 		self.waitTime = 15
 		self.triesEntry = triesEntry

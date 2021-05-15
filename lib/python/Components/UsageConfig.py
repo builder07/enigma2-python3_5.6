@@ -17,35 +17,35 @@ model = getBoxType()
 displaytype = getDisplayType()
 
 def InitUsageConfig():
-	config.misc.useNTPminutes = ConfigSelection(default = "30", choices = [("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
+	config.misc.useNTPminutes = ConfigSelection(default="30", choices=[("30", "30" + " " +_("minutes")), ("60", _("Hour")), ("1440", _("Once per day"))])
 	config.usage = ConfigSubsection()
-	config.usage.dns = ConfigSelection(default = "dhcp-router", choices = [("dhcp-router", _("DHCP router")), ("custom", _("Custom")), ("google", _("Google DNS")), ("cloadflare", _("Cloadfare")), ("opendns-familyshield", _("OpenDNS FamilyShield")), ("opendns-home", _("OpenDNS Home"))])
-	config.usage.subnetwork = ConfigYesNo(default = True)
-	config.usage.subnetwork_cable = ConfigYesNo(default = True)
-	config.usage.subnetwork_terrestrial = ConfigYesNo(default = True)
-	config.usage.showdish = ConfigYesNo(default = True)
-	config.misc.showrotorposition = ConfigSelection(default = "no", choices = [("no", _("no")), ("yes", _("yes")), ("withtext", _("with text")), ("tunername", _("with tuner name"))])
-	config.usage.multibouquet = ConfigYesNo(default = True)
-	config.usage.maxchannelnumlen = ConfigSelection(default = "4", choices = [("3", _("3")),("4", _("4")), ("5", _("5")), ("6", _("6"))])
+	config.usage.dns = ConfigSelection(default="dhcp-router", choices=[("dhcp-router", _("DHCP router")), ("custom", _("Custom")), ("google", _("Google DNS")), ("cloadflare", _("Cloadfare")), ("opendns-familyshield", _("OpenDNS FamilyShield")), ("opendns-home", _("OpenDNS Home"))])
+	config.usage.subnetwork = ConfigYesNo(default=True)
+	config.usage.subnetwork_cable = ConfigYesNo(default=True)
+	config.usage.subnetwork_terrestrial = ConfigYesNo(default=True)
+	config.usage.showdish = ConfigYesNo(default=True)
+	config.misc.showrotorposition = ConfigSelection(default="no", choices=[("no", _("no")), ("yes", _("yes")), ("withtext", _("with text")), ("tunername", _("with tuner name"))])
+	config.usage.multibouquet = ConfigYesNo(default=True)
+	config.usage.maxchannelnumlen = ConfigSelection(default="4", choices=[("3", _("3")),("4", _("4")), ("5", _("5")), ("6", _("6"))])
 	config.misc.OVupdatecheck = ConfigYesNo(default=True)
 
-	config.usage.alternative_number_mode = ConfigYesNo(default = False)
+	config.usage.alternative_number_mode = ConfigYesNo(default=False)
 	def alternativeNumberModeChange(configElement):
 		eDVBDB.getInstance().setNumberingMode(configElement.value)
 		refreshServiceList()
 	config.usage.alternative_number_mode.addNotifier(alternativeNumberModeChange)
 
-	config.usage.servicelist_twolines = ConfigSelection(default = "0", choices = [("0", _("Single line mode")), ("1", _("Two lines")), ("2", _("Two lines and next event"))])
+	config.usage.servicelist_twolines = ConfigSelection(default="0", choices=[("0", _("Single line mode")), ("1", _("Two lines")), ("2", _("Two lines and next event"))])
 	config.usage.servicelist_twolines.addNotifier(refreshServiceList)
 
-	config.usage.hide_number_markers = ConfigYesNo(default = True)
+	config.usage.hide_number_markers = ConfigYesNo(default=True)
 	config.usage.hide_number_markers.addNotifier(refreshServiceList)
 
-	config.usage.servicetype_icon_mode = ConfigSelection(default = "1", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
+	config.usage.servicetype_icon_mode = ConfigSelection(default="1", choices=[("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
 	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
-	config.usage.crypto_icon_mode = ConfigSelection(default = "2", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
+	config.usage.crypto_icon_mode = ConfigSelection(default="2", choices=[("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
 	config.usage.crypto_icon_mode.addNotifier(refreshServiceList)
-	config.usage.record_indicator_mode = ConfigSelection(default = "3", choices = [("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename")), ("3", _("Red colored"))])
+	config.usage.record_indicator_mode = ConfigSelection(default="3", choices=[("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename")), ("3", _("Red colored"))])
 	config.usage.record_indicator_mode.addNotifier(refreshServiceList)
 
 	config.usage.virtualkeyBoard_style = ConfigSelection(default='OV', choices=[('OV', _('Open Vision')), ('e2', _('enigma2 default'))])
@@ -56,9 +56,9 @@ def InitUsageConfig():
 	config.usage.servicelist_column = ConfigSelection(default="-1", choices=choicelist)
 	config.usage.servicelist_column.addNotifier(refreshServiceList)
 
-	config.usage.service_icon_enable = ConfigYesNo(default = True)
+	config.usage.service_icon_enable = ConfigYesNo(default=True)
 	config.usage.service_icon_enable.addNotifier(refreshServiceList)
-	config.usage.servicelist_cursor_behavior = ConfigSelection(default = "keep", choices = [
+	config.usage.servicelist_cursor_behavior = ConfigSelection(default="keep", choices=[
 		("standard", _("Standard")),
 		("keep", _("Keep service")),
 		("reverseB", _("Reverse bouquet buttons")),
@@ -67,75 +67,75 @@ def InitUsageConfig():
 	choicelist = [("by skin", _("As defined by the skin"))]
 	for i in range (5,41):
 		choicelist.append((str(i)))
-	config.usage.servicelist_number_of_services = ConfigSelection(default = "by skin", choices = choicelist)
+	config.usage.servicelist_number_of_services = ConfigSelection(default="by skin", choices=choicelist)
 	config.usage.servicelist_number_of_services.addNotifier(refreshServiceList)
 
-	config.usage.multiepg_ask_bouquet = ConfigYesNo(default = False)
+	config.usage.multiepg_ask_bouquet = ConfigYesNo(default=False)
 
-	config.usage.quickzap_bouquet_change = ConfigYesNo(default = False)
-	config.usage.e1like_radio_mode = ConfigYesNo(default = False)
-	config.usage.e1like_radio_mode_last_play = ConfigYesNo(default = True)
+	config.usage.quickzap_bouquet_change = ConfigYesNo(default=False)
+	config.usage.e1like_radio_mode = ConfigYesNo(default=False)
+	config.usage.e1like_radio_mode_last_play = ConfigYesNo(default=True)
 	choicelist = [("0", _("No timeout"))]
 	for i in range(1, 12):
 		choicelist.append((str(i), ngettext("%d second", "%d seconds", i) % i))
-	config.usage.infobar_timeout = ConfigSelection(default = "5", choices = choicelist)
+	config.usage.infobar_timeout = ConfigSelection(default="5", choices=choicelist)
 	if getSoCFamily().startswith("bcm"):
-		config.usage.fadeout = ConfigYesNo(default = True)
+		config.usage.fadeout = ConfigYesNo(default=True)
 	else:
-		config.usage.fadeout = ConfigYesNo(default = False)	
-	config.usage.show_infobar_do_dimming = ConfigYesNo(default = False)
-	config.usage.show_infobar_dimming_speed = ConfigSelectionNumber(min = 1, max = 40, stepwidth = 1, default = 40, wraparound = True)
-	config.usage.show_infobar_on_zap = ConfigYesNo(default = True)
-	config.usage.show_infobar_on_skip = ConfigYesNo(default = True)
-	config.usage.show_infobar_on_event_change = ConfigYesNo(default = False)
-	config.usage.show_second_infobar = ConfigSelection(default = "0", choices = [("", _("None"))] + choicelist + [("EPG",_("EPG"))])
-	config.usage.show_simple_second_infobar = ConfigYesNo(default = False)
-	config.usage.infobar_frontend_source = ConfigSelection(default = "settings", choices = [("settings", _("Settings")), ("tuner", _("Tuner"))])
-	config.usage.oldstyle_zap_controls = ConfigYesNo(default = False)
-	config.usage.oldstyle_channel_select_controls = ConfigYesNo(default = False)
-	config.usage.zap_with_ch_buttons = ConfigYesNo(default = False)
-	config.usage.ok_is_channelselection = ConfigYesNo(default = False)
-	config.usage.volume_instead_of_channelselection = ConfigYesNo(default = False)
-	config.usage.channelselection_preview = ConfigYesNo(default = False)
-	config.usage.show_spinner = ConfigYesNo(default = True)
-	config.usage.menu_sort_weight = ConfigDictionarySet(default = { "mainmenu" : {"submenu" : {} }})
-	config.usage.menu_sort_mode = ConfigSelection(default = "default", choices = [("a_z", _("alphabetical")), ("default", _("Default")), ("user", _("user defined")), ("user_hidden", _("user defined hidden"))])
+		config.usage.fadeout = ConfigYesNo(default=False)	
+	config.usage.show_infobar_do_dimming = ConfigYesNo(default=False)
+	config.usage.show_infobar_dimming_speed = ConfigSelectionNumber(min=1, max=40, stepwidth=1, default=40, wraparound=True)
+	config.usage.show_infobar_on_zap = ConfigYesNo(default=True)
+	config.usage.show_infobar_on_skip = ConfigYesNo(default=True)
+	config.usage.show_infobar_on_event_change = ConfigYesNo(default=False)
+	config.usage.show_second_infobar = ConfigSelection(default="0", choices=[("", _("None"))] + choicelist + [("EPG",_("EPG"))])
+	config.usage.show_simple_second_infobar = ConfigYesNo(default=False)
+	config.usage.infobar_frontend_source = ConfigSelection(default="settings", choices=[("settings", _("Settings")), ("tuner", _("Tuner"))])
+	config.usage.oldstyle_zap_controls = ConfigYesNo(default=False)
+	config.usage.oldstyle_channel_select_controls = ConfigYesNo(default=False)
+	config.usage.zap_with_ch_buttons = ConfigYesNo(default=False)
+	config.usage.ok_is_channelselection = ConfigYesNo(default=False)
+	config.usage.volume_instead_of_channelselection = ConfigYesNo(default=False)
+	config.usage.channelselection_preview = ConfigYesNo(default=False)
+	config.usage.show_spinner = ConfigYesNo(default=True)
+	config.usage.menu_sort_weight = ConfigDictionarySet(default={ "mainmenu" : {"submenu" : {} }})
+	config.usage.menu_sort_mode = ConfigSelection(default="default", choices=[("a_z", _("alphabetical")), ("default", _("Default")), ("user", _("user defined")), ("user_hidden", _("user defined hidden"))])
 	if model.startswith("bey"):
 		config.usage.show_genre_info = ConfigYesNo(default=True)
 	else:
 		config.usage.show_genre_info = ConfigYesNo(default=False)	
-	config.usage.menu_show_numbers = ConfigSelection(default = "no", choices = [("no", _("no")), ("menu&plugins", _("in menu and plugins")), ("menu", _("in menu only")), ("plugins", _("in plugins only"))])
+	config.usage.menu_show_numbers = ConfigSelection(default="no", choices=[("no", _("no")), ("menu&plugins", _("in menu and plugins")), ("menu", _("in menu only")), ("plugins", _("in plugins only"))])
 	config.usage.showScreenPath = ConfigSelection(default="small", choices=[("off", _("Disabled")), ("small", _("Small")), ("large", _("Large"))])
-	config.usage.enable_tt_caching = ConfigYesNo(default = True)
+	config.usage.enable_tt_caching = ConfigYesNo(default=True)
 
-	config.usage.tuxtxt_font_and_res = ConfigSelection(default = "TTF_SD", choices = [("X11_SD", _("Fixed X11 font (SD)")), ("TTF_SD", _("TrueType font (SD)")), ("TTF_HD", _("TrueType font (HD)")), ("TTF_FHD", _("TrueType font (full-HD)")), ("expert_mode", _("Expert mode"))])
-	config.usage.tuxtxt_UseTTF = ConfigSelection(default = "1", choices = [("0", "0"), ("1", "1")])
-	config.usage.tuxtxt_TTFBold = ConfigSelection(default = "1", choices = [("0", "0"), ("1", "1")])
-	config.usage.tuxtxt_TTFScreenResX = ConfigSelection(default = "720", choices = [("720", "720"), ("1280", "1280"), ("1920", "1920")])
-	config.usage.tuxtxt_StartX = ConfigInteger(default=50, limits = (0, 200))
-	config.usage.tuxtxt_EndX = ConfigInteger(default=670, limits = (500, 1920))
-	config.usage.tuxtxt_StartY = ConfigInteger(default=30, limits = (0, 200))
-	config.usage.tuxtxt_EndY = ConfigInteger(default=555, limits = (400, 1080))
-	config.usage.tuxtxt_TTFShiftY = ConfigSelection(default = "2", choices = [("-9", "-9"), ("-8", "-8"), ("-7", "-7"), ("-6", "-6"), ("-5", "-5"), ("-4", "-4"), ("-3", "-3"), ("-2", "-2"), ("-1", "-1"), ("0", "0"), ("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5"), ("6", "6"), ("7", "7"), ("8", "8"), ("9", "9")])
-	config.usage.tuxtxt_TTFShiftX = ConfigSelection(default = "0", choices = [("-9", "-9"), ("-8", "-8"), ("-7", "-7"), ("-6", "-6"), ("-5", "-5"), ("-4", "-4"), ("-3", "-3"), ("-2", "-2"), ("-1", "-1"), ("0", "0"), ("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5"), ("6", "6"), ("7", "7"), ("8", "8"), ("9", "9")])
-	config.usage.tuxtxt_TTFWidthFactor16 = ConfigInteger(default=29, limits = (8, 31))
-	config.usage.tuxtxt_TTFHeightFactor16 = ConfigInteger(default=14, limits = (8, 31))
-	config.usage.tuxtxt_CleanAlgo = ConfigInteger(default=0, limits = (0, 9))
+	config.usage.tuxtxt_font_and_res = ConfigSelection(default="TTF_SD", choices=[("X11_SD", _("Fixed X11 font (SD)")), ("TTF_SD", _("TrueType font (SD)")), ("TTF_HD", _("TrueType font (HD)")), ("TTF_FHD", _("TrueType font (full-HD)")), ("expert_mode", _("Expert mode"))])
+	config.usage.tuxtxt_UseTTF = ConfigSelection(default="1", choices=[("0", "0"), ("1", "1")])
+	config.usage.tuxtxt_TTFBold = ConfigSelection(default="1", choices=[("0", "0"), ("1", "1")])
+	config.usage.tuxtxt_TTFScreenResX = ConfigSelection(default="720", choices=[("720", "720"), ("1280", "1280"), ("1920", "1920")])
+	config.usage.tuxtxt_StartX = ConfigInteger(default=50, limits=(0, 200))
+	config.usage.tuxtxt_EndX = ConfigInteger(default=670, limits=(500, 1920))
+	config.usage.tuxtxt_StartY = ConfigInteger(default=30, limits=(0, 200))
+	config.usage.tuxtxt_EndY = ConfigInteger(default=555, limits=(400, 1080))
+	config.usage.tuxtxt_TTFShiftY = ConfigSelection(default="2", choices=[("-9", "-9"), ("-8", "-8"), ("-7", "-7"), ("-6", "-6"), ("-5", "-5"), ("-4", "-4"), ("-3", "-3"), ("-2", "-2"), ("-1", "-1"), ("0", "0"), ("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5"), ("6", "6"), ("7", "7"), ("8", "8"), ("9", "9")])
+	config.usage.tuxtxt_TTFShiftX = ConfigSelection(default="0", choices=[("-9", "-9"), ("-8", "-8"), ("-7", "-7"), ("-6", "-6"), ("-5", "-5"), ("-4", "-4"), ("-3", "-3"), ("-2", "-2"), ("-1", "-1"), ("0", "0"), ("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5"), ("6", "6"), ("7", "7"), ("8", "8"), ("9", "9")])
+	config.usage.tuxtxt_TTFWidthFactor16 = ConfigInteger(default=29, limits=(8, 31))
+	config.usage.tuxtxt_TTFHeightFactor16 = ConfigInteger(default=14, limits=(8, 31))
+	config.usage.tuxtxt_CleanAlgo = ConfigInteger(default=0, limits=(0, 9))
 	config.usage.tuxtxt_ConfFileHasBeenPatched = NoSave(ConfigYesNo(default=False))
 
-	config.usage.tuxtxt_font_and_res.addNotifier(patchTuxtxtConfFile, initial_call = False, immediate_feedback = False)
-	config.usage.tuxtxt_UseTTF.addNotifier(patchTuxtxtConfFile, initial_call = False, immediate_feedback = False)
-	config.usage.tuxtxt_TTFBold.addNotifier(patchTuxtxtConfFile, initial_call = False, immediate_feedback = False)
-	config.usage.tuxtxt_TTFScreenResX.addNotifier(patchTuxtxtConfFile, initial_call = False, immediate_feedback = False)
-	config.usage.tuxtxt_StartX.addNotifier(patchTuxtxtConfFile, initial_call = False, immediate_feedback = False)
-	config.usage.tuxtxt_EndX.addNotifier(patchTuxtxtConfFile, initial_call = False, immediate_feedback = False)
-	config.usage.tuxtxt_StartY.addNotifier(patchTuxtxtConfFile, initial_call = False, immediate_feedback = False)
-	config.usage.tuxtxt_EndY.addNotifier(patchTuxtxtConfFile, initial_call = False, immediate_feedback = False)
-	config.usage.tuxtxt_TTFShiftY.addNotifier(patchTuxtxtConfFile, initial_call = False, immediate_feedback = False)
-	config.usage.tuxtxt_TTFShiftX.addNotifier(patchTuxtxtConfFile, initial_call = False, immediate_feedback = False)
-	config.usage.tuxtxt_TTFWidthFactor16.addNotifier(patchTuxtxtConfFile, initial_call = False, immediate_feedback = False)
-	config.usage.tuxtxt_TTFHeightFactor16.addNotifier(patchTuxtxtConfFile, initial_call = False, immediate_feedback = False)
-	config.usage.tuxtxt_CleanAlgo.addNotifier(patchTuxtxtConfFile, initial_call = False, immediate_feedback = False)
+	config.usage.tuxtxt_font_and_res.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False)
+	config.usage.tuxtxt_UseTTF.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False)
+	config.usage.tuxtxt_TTFBold.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False)
+	config.usage.tuxtxt_TTFScreenResX.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False)
+	config.usage.tuxtxt_StartX.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False)
+	config.usage.tuxtxt_EndX.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False)
+	config.usage.tuxtxt_StartY.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False)
+	config.usage.tuxtxt_EndY.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False)
+	config.usage.tuxtxt_TTFShiftY.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False)
+	config.usage.tuxtxt_TTFShiftX.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False)
+	config.usage.tuxtxt_TTFWidthFactor16.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False)
+	config.usage.tuxtxt_TTFHeightFactor16.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False)
+	config.usage.tuxtxt_CleanAlgo.addNotifier(patchTuxtxtConfFile, initial_call=False, immediate_feedback=False)
 
 	config.usage.sort_settings = ConfigYesNo(default=False)
 	choicelist = []
@@ -147,62 +147,62 @@ def InitUsageConfig():
 	for i in (3600, 7200, 14400):
 		h = i / 3600
 		choicelist.append((str(i), ngettext("%d hour", "%d hours", h) % h))
-	config.usage.hdd_standby = ConfigSelection(default = "300", choices = [("0", _("No standby"))] + choicelist)
-	config.usage.output_12V = ConfigSelection(default = "do not change", choices = [
+	config.usage.hdd_standby = ConfigSelection(default="300", choices=[("0", _("No standby"))] + choicelist)
+	config.usage.output_12V = ConfigSelection(default="do not change", choices=[
 		("do not change", _("Do not change")), ("off", _("Off")), ("on", _("On")) ])
 
-	config.usage.pip_zero_button = ConfigSelection(default = "standard", choices = [
+	config.usage.pip_zero_button = ConfigSelection(default="standard", choices=[
 		("standard", _("Standard")), ("swap", _("Swap PiP and main picture")),
 		("swapstop", _("Move PiP to main picture")), ("stop", _("Stop PiP")) ])
-	config.usage.pip_hideOnExit = ConfigSelection(default = "without popup", choices = [
+	config.usage.pip_hideOnExit = ConfigSelection(default="without popup", choices=[
 		("no", _("no")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
 	choicelist = [("-1", _("Disabled")), ("0", _("No timeout"))]
 	for i in [60, 300, 600, 900, 1800, 2700, 3600]:
 		m = i/60
 		choicelist.append((str(i), ngettext("%d minute", "%d minutes", m) % m))
-	config.usage.pip_last_service_timeout = ConfigSelection(default = "0", choices = choicelist)
+	config.usage.pip_last_service_timeout = ConfigSelection(default="0", choices=choicelist)
 
-	config.usage.default_path = ConfigText(default = "")
-	config.usage.timer_path = ConfigText(default = "<default>")
-	config.usage.instantrec_path = ConfigText(default = "<default>")
-	config.usage.timeshift_path = ConfigText(default = "/media/hdd/")
-	config.usage.allowed_timeshift_paths = ConfigLocations(default = ["/media/hdd/"])
+	config.usage.default_path = ConfigText(default="")
+	config.usage.timer_path = ConfigText(default="<default>")
+	config.usage.instantrec_path = ConfigText(default="<default>")
+	config.usage.timeshift_path = ConfigText(default="/media/hdd/")
+	config.usage.allowed_timeshift_paths = ConfigLocations(default=["/media/hdd/"])
 
-	config.usage.trashsort_deltime = ConfigSelection(default = "no", choices = [
+	config.usage.trashsort_deltime = ConfigSelection(default="no", choices=[
 		("no", _("no")),
 		("show record time", _("Yes, show record time")),
 		("show delete time", _("Yes, show delete time"))])
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
 
-	config.usage.movielist_trashcan_days = ConfigSelectionNumber(min = 0, max = 31, stepwidth = 1, default = 8, wraparound = True)
-	config.usage.movielist_trashcan_reserve = ConfigNumber(default = 40)
-	config.usage.on_movie_start = ConfigSelection(default = "ask yes", choices = [
+	config.usage.movielist_trashcan_days = ConfigSelectionNumber(min=0, max=31, stepwidth=1, default=8, wraparound=True)
+	config.usage.movielist_trashcan_reserve = ConfigNumber(default=40)
+	config.usage.on_movie_start = ConfigSelection(default="ask yes", choices=[
 		("ask yes", _("Ask user (with default as 'yes')")),
 		("ask no", _("Ask user (with default as 'no')")),
 		("resume", _("Resume from last position")),
 		("beginning", _("Start from the beginning"))])
-	config.usage.on_movie_stop = ConfigSelection(default = "movielist", choices = [
+	config.usage.on_movie_stop = ConfigSelection(default="movielist", choices=[
 		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")) ])
-	config.usage.on_movie_eof = ConfigSelection(default = "movielist", choices = [
+	config.usage.on_movie_eof = ConfigSelection(default="movielist", choices=[
 		("ask", _("Ask user")), ("movielist", _("Return to movie list")), ("quit", _("Return to previous service")), ("pause", _("Pause movie at end")), ("playlist", _("Play next (return to movie list)")),
 		("playlistquit", _("Play next (return to previous service)")), ("loop", _("Continues play (loop)")), ("repeatcurrent", _("Repeat"))])
-	config.usage.next_movie_msg = ConfigYesNo(default = True)
+	config.usage.next_movie_msg = ConfigYesNo(default=True)
 	config.usage.last_movie_played = ConfigText()
-	config.usage.leave_movieplayer_onExit = ConfigSelection(default = "popup", choices = [
+	config.usage.leave_movieplayer_onExit = ConfigSelection(default="popup", choices=[
 		("no", _("No")), ("popup", _("With popup")), ("without popup", _("Without popup")) ])
 
-	config.usage.setup_level = ConfigSelection(default = "expert", choices = [
+	config.usage.setup_level = ConfigSelection(default="expert", choices=[
 		("simple", _("Normal")),
 		("intermediate", _("Advanced")),
 		("expert", _("Expert")) ])
 
-	config.usage.startup_to_standby = ConfigSelection(default = "no", choices = [
+	config.usage.startup_to_standby = ConfigSelection(default="no", choices=[
 		("no", _("no")),
 		("yes", _("yes")),
 		("except", _("No, except Wakeup timer")) ])
 
-	config.usage.wakeup_enabled = ConfigSelection(default = "no", choices = [
+	config.usage.wakeup_enabled = ConfigSelection(default="no", choices=[
 		("no", _("no")),
 		("yes", _("yes")),
 		("standby", _("Yes, only from standby")),
@@ -210,22 +210,22 @@ def InitUsageConfig():
 	config.usage.wakeup_day = ConfigSubDict()
 	config.usage.wakeup_time = ConfigSubDict()
 	for i in range(7):
-		config.usage.wakeup_day[i] = ConfigEnableDisable(default = False)
-		config.usage.wakeup_time[i] = ConfigClock(default = ((6 * 60 + 0) * 60))
+		config.usage.wakeup_day[i] = ConfigEnableDisable(default=False)
+		config.usage.wakeup_time[i] = ConfigClock(default=((6 * 60 + 0) * 60))
 
 	choicelist = [("0", _("Do nothing"))]
 	for i in range(3600, 21601, 3600):
 		h = abs(i / 3600)
 		h = ngettext("%d hour", "%d hours", h) % h
 		choicelist.append((str(i), _("Standby in ") + h))
-	config.usage.inactivity_timer = ConfigSelection(default = "0", choices = choicelist)
-	config.usage.inactivity_timer_blocktime = ConfigYesNo(default = True)
-	config.usage.inactivity_timer_blocktime_begin = ConfigClock(default = time.mktime((1970, 1, 1, 18, 0, 0, 0, 0, 0)))
-	config.usage.inactivity_timer_blocktime_end = ConfigClock(default = time.mktime((1970, 1, 1, 23, 0, 0, 0, 0, 0)))
-	config.usage.inactivity_timer_blocktime_extra = ConfigYesNo(default = False)
-	config.usage.inactivity_timer_blocktime_extra_begin = ConfigClock(default = time.mktime((1970, 1, 1, 6, 0, 0, 0, 0, 0)))
-	config.usage.inactivity_timer_blocktime_extra_end = ConfigClock(default = time.mktime((1970, 1, 1, 9, 0, 0, 0, 0, 0)))
-	config.usage.inactivity_timer_blocktime_by_weekdays = ConfigYesNo(default = False)
+	config.usage.inactivity_timer = ConfigSelection(default="0", choices=choicelist)
+	config.usage.inactivity_timer_blocktime = ConfigYesNo(default=True)
+	config.usage.inactivity_timer_blocktime_begin = ConfigClock(default=time.mktime((1970, 1, 1, 18, 0, 0, 0, 0, 0)))
+	config.usage.inactivity_timer_blocktime_end = ConfigClock(default=time.mktime((1970, 1, 1, 23, 0, 0, 0, 0, 0)))
+	config.usage.inactivity_timer_blocktime_extra = ConfigYesNo(default=False)
+	config.usage.inactivity_timer_blocktime_extra_begin = ConfigClock(default=time.mktime((1970, 1, 1, 6, 0, 0, 0, 0, 0)))
+	config.usage.inactivity_timer_blocktime_extra_end = ConfigClock(default=time.mktime((1970, 1, 1, 9, 0, 0, 0, 0, 0)))
+	config.usage.inactivity_timer_blocktime_by_weekdays = ConfigYesNo(default=False)
 	config.usage.inactivity_timer_blocktime_day = ConfigSubDict()
 	config.usage.inactivity_timer_blocktime_begin_day = ConfigSubDict()
 	config.usage.inactivity_timer_blocktime_end_day = ConfigSubDict()
@@ -233,31 +233,31 @@ def InitUsageConfig():
 	config.usage.inactivity_timer_blocktime_extra_begin_day = ConfigSubDict()
 	config.usage.inactivity_timer_blocktime_extra_end_day = ConfigSubDict()
 	for i in range(7):
-		config.usage.inactivity_timer_blocktime_day[i] = ConfigYesNo(default = False)
-		config.usage.inactivity_timer_blocktime_begin_day[i] = ConfigClock(default = time.mktime((1970, 1, 1, 18, 0, 0, 0, 0, 0)))
-		config.usage.inactivity_timer_blocktime_end_day[i] = ConfigClock(default = time.mktime((1970, 1, 1, 23, 0, 0, 0, 0, 0)))
-		config.usage.inactivity_timer_blocktime_extra_day[i] = ConfigYesNo(default = False)
-		config.usage.inactivity_timer_blocktime_extra_begin_day[i] = ConfigClock(default = time.mktime((1970, 1, 1, 6, 0, 0, 0, 0, 0)))
-		config.usage.inactivity_timer_blocktime_extra_end_day[i] = ConfigClock(default = time.mktime((1970, 1, 1, 9, 0, 0, 0, 0, 0)))
+		config.usage.inactivity_timer_blocktime_day[i] = ConfigYesNo(default=False)
+		config.usage.inactivity_timer_blocktime_begin_day[i] = ConfigClock(default=time.mktime((1970, 1, 1, 18, 0, 0, 0, 0, 0)))
+		config.usage.inactivity_timer_blocktime_end_day[i] = ConfigClock(default=time.mktime((1970, 1, 1, 23, 0, 0, 0, 0, 0)))
+		config.usage.inactivity_timer_blocktime_extra_day[i] = ConfigYesNo(default=False)
+		config.usage.inactivity_timer_blocktime_extra_begin_day[i] = ConfigClock(default=time.mktime((1970, 1, 1, 6, 0, 0, 0, 0, 0)))
+		config.usage.inactivity_timer_blocktime_extra_end_day[i] = ConfigClock(default=time.mktime((1970, 1, 1, 9, 0, 0, 0, 0, 0)))
 
 	choicelist = [("0", _("Disabled")),("event_standby", _("Standby after current event"))]
 	for i in range(900, 7201, 900):
 		m = abs(i / 60)
 		m = ngettext("%d minute", "%d minutes", m) % m
 		choicelist.append((str(i), _("Standby in ") + m))
-	config.usage.sleep_timer = ConfigSelection(default = "0", choices = choicelist)
+	config.usage.sleep_timer = ConfigSelection(default="0", choices=choicelist)
 
 	choicelist = [("0", _("Disabled"))]
 	for i in [300, 600] + list(range(900, 14401, 900)):
 		m = abs(i / 60)
 		m = ngettext("%d minute", "%d minutes", m) % m
 		choicelist.append((str(i), _("after ") + m))
-	config.usage.standby_to_shutdown_timer = ConfigSelection(default = "0", choices = choicelist)
-	config.usage.standby_to_shutdown_timer_blocktime = ConfigYesNo(default = False)
-	config.usage.standby_to_shutdown_timer_blocktime_begin = ConfigClock(default = time.mktime((1970, 1, 1, 6, 0, 0, 0, 0, 0)))
-	config.usage.standby_to_shutdown_timer_blocktime_end = ConfigClock(default = time.mktime((1970, 1, 1, 23, 0, 0, 0, 0, 0)))
+	config.usage.standby_to_shutdown_timer = ConfigSelection(default="0", choices=choicelist)
+	config.usage.standby_to_shutdown_timer_blocktime = ConfigYesNo(default=False)
+	config.usage.standby_to_shutdown_timer_blocktime_begin = ConfigClock(default=time.mktime((1970, 1, 1, 6, 0, 0, 0, 0, 0)))
+	config.usage.standby_to_shutdown_timer_blocktime_end = ConfigClock(default=time.mktime((1970, 1, 1, 23, 0, 0, 0, 0, 0)))
 
-	config.usage.long_press_emulation_key = ConfigSelection(default = "0", choices = [
+	config.usage.long_press_emulation_key = ConfigSelection(default="0", choices=[
 		("0", _("None")),
 		(str(KEYIDS["KEY_TV"]), _("TV")),
 		(str(KEYIDS["KEY_RADIO"]), _("Radio")),
@@ -274,9 +274,9 @@ def InitUsageConfig():
 	choicelist = [("0", _("Disabled"))]
 	for m in (1, 5, 10, 15, 30, 60):
 		choicelist.append((str(m * 60), ngettext("%d minute", "%d minutes", m) % m))
-	config.usage.screen_saver = ConfigSelection(default = "300", choices = choicelist)
+	config.usage.screen_saver = ConfigSelection(default="300", choices=choicelist)
 
-	config.usage.check_timeshift = ConfigYesNo(default = True)
+	config.usage.check_timeshift = ConfigYesNo(default=True)
 
 	choicelist = [("0", _("Disabled"))]
 	for i in (2, 3, 4, 5, 10, 20, 30):
@@ -284,9 +284,9 @@ def InitUsageConfig():
 	for i in (60, 120, 300):
 		m = i / 60
 		choicelist.append((str(i), ngettext("%d minute", "%d minutes", m) % m))
-	config.usage.timeshift_start_delay = ConfigSelection(default = "0", choices = choicelist)
+	config.usage.timeshift_start_delay = ConfigSelection(default="0", choices=choicelist)
 
-	config.usage.alternatives_priority = ConfigSelection(default = "1", choices = [
+	config.usage.alternatives_priority = ConfigSelection(default="1", choices=[
 		("0", "DVB-S/-C/-T"),
 		("1", "DVB-S/-T/-C"),
 		("2", "DVB-C/-S/-T"),
@@ -299,32 +299,32 @@ def InitUsageConfig():
 		if configElement.value:
 			configElement.value = "%s%s" % (not configElement.value.startswith("http://") and "http://" or "", configElement.value)
 			configElement.value = "%s%s" % (configElement.value, configElement.value.count(":") == 1 and ":8001" or "")
-	config.usage.remote_fallback_enabled = ConfigYesNo(default = False)
-	config.usage.remote_fallback = ConfigText(default = "", fixed_size = False)
+	config.usage.remote_fallback_enabled = ConfigYesNo(default=False)
+	config.usage.remote_fallback = ConfigText(default="", fixed_size=False)
 	config.usage.remote_fallback.addNotifier(remote_fallback_changed, immediate_feedback=False)
-	config.usage.remote_fallback_import_url = ConfigText(default = "", fixed_size = False)
+	config.usage.remote_fallback_import_url = ConfigText(default="", fixed_size=False)
 	config.usage.remote_fallback_import_url.addNotifier(remote_fallback_changed, immediate_feedback=False)
-	config.usage.remote_fallback_alternative = ConfigYesNo(default = False)
-	config.usage.remote_fallback_dvb_t = ConfigText(default = "", fixed_size = False)
+	config.usage.remote_fallback_alternative = ConfigYesNo(default=False)
+	config.usage.remote_fallback_dvb_t = ConfigText(default="", fixed_size=False)
 	config.usage.remote_fallback_dvb_t.addNotifier(remote_fallback_changed, immediate_feedback=False)
-	config.usage.remote_fallback_dvb_c = ConfigText(default = "", fixed_size = False)
+	config.usage.remote_fallback_dvb_c = ConfigText(default="", fixed_size=False)
 	config.usage.remote_fallback_dvb_c.addNotifier(remote_fallback_changed, immediate_feedback=False)
-	config.usage.remote_fallback_atsc = ConfigText(default = "", fixed_size = False)
+	config.usage.remote_fallback_atsc = ConfigText(default="", fixed_size=False)
 	config.usage.remote_fallback_atsc.addNotifier(remote_fallback_changed, immediate_feedback=False)
-	config.usage.remote_fallback_import = ConfigSelection(default = "", choices = [("", _("No")), ("channels", _("Channels only")), ("channels_epg", _("Channels and EPG")), ("epg", _("EPG only"))])
-	config.usage.remote_fallback_import_restart = ConfigYesNo(default = False)
-	config.usage.remote_fallback_import_standby = ConfigYesNo(default = False)
-	config.usage.remote_fallback_ok = ConfigYesNo(default = False)
-	config.usage.remote_fallback_nok = ConfigYesNo(default = False)
-	config.usage.remote_fallback_extension_menu = ConfigYesNo(default = False)
-	config.usage.remote_fallback_external_timer = ConfigYesNo(default = False)
-	config.usage.remote_fallback_openwebif_customize = ConfigYesNo(default = False)
-	config.usage.remote_fallback_openwebif_userid = ConfigText(default = "root")
-	config.usage.remote_fallback_openwebif_password = ConfigPassword(default = "default")
+	config.usage.remote_fallback_import = ConfigSelection(default="", choices=[("", _("No")), ("channels", _("Channels only")), ("channels_epg", _("Channels and EPG")), ("epg", _("EPG only"))])
+	config.usage.remote_fallback_import_restart = ConfigYesNo(default=False)
+	config.usage.remote_fallback_import_standby = ConfigYesNo(default=False)
+	config.usage.remote_fallback_ok = ConfigYesNo(default=False)
+	config.usage.remote_fallback_nok = ConfigYesNo(default=False)
+	config.usage.remote_fallback_extension_menu = ConfigYesNo(default=False)
+	config.usage.remote_fallback_external_timer = ConfigYesNo(default=False)
+	config.usage.remote_fallback_openwebif_customize = ConfigYesNo(default=False)
+	config.usage.remote_fallback_openwebif_userid = ConfigText(default="root")
+	config.usage.remote_fallback_openwebif_password = ConfigPassword(default="default")
 	config.usage.remote_fallback_openwebif_port = ConfigInteger(default=80, limits=(0,65535))
-	config.usage.remote_fallback_dvbt_region = ConfigText(default = "fallback DVB-T/T2 Europe")
+	config.usage.remote_fallback_dvbt_region = ConfigText(default="fallback DVB-T/T2 Europe")
 
-	config.usage.show_timer_conflict_warning = ConfigYesNo(default = True)
+	config.usage.show_timer_conflict_warning = ConfigYesNo(default=True)
 
 	dvbs_nims = [("-2", _("Disabled"))]
 	dvbt_nims = [("-2", _("Disabled"))]
@@ -345,104 +345,104 @@ def InitUsageConfig():
 
 	config.usage.menutype = ConfigSelection(default='standard', choices=[('horzanim', _('Horizontal menu')), ('horzicon', _('Horizontal icons')), ('standard', _('Standard menu'))])
 
-	config.usage.frontend_priority = ConfigSelection(default = "-1", choices = list(nims))
+	config.usage.frontend_priority = ConfigSelection(default="-1", choices=list(nims))
 	nims.insert(0,("-2", _("Disabled")))
-	config.usage.recording_frontend_priority = ConfigSelection(default = "-2", choices = nims)
-	config.usage.frontend_priority_dvbs = ConfigSelection(default = "-2", choices = list(dvbs_nims))
+	config.usage.recording_frontend_priority = ConfigSelection(default="-2", choices=nims)
+	config.usage.frontend_priority_dvbs = ConfigSelection(default="-2", choices=list(dvbs_nims))
 	dvbs_nims.insert(1,("-1", _("auto")))
-	config.usage.recording_frontend_priority_dvbs = ConfigSelection(default = "-2", choices = dvbs_nims)
-	config.usage.frontend_priority_dvbt = ConfigSelection(default = "-2", choices = list(dvbt_nims))
+	config.usage.recording_frontend_priority_dvbs = ConfigSelection(default="-2", choices=dvbs_nims)
+	config.usage.frontend_priority_dvbt = ConfigSelection(default="-2", choices=list(dvbt_nims))
 	dvbt_nims.insert(1,("-1", _("auto")))
-	config.usage.recording_frontend_priority_dvbt = ConfigSelection(default = "-2", choices = dvbt_nims)
-	config.usage.frontend_priority_dvbc = ConfigSelection(default = "-2", choices = list(dvbc_nims))
+	config.usage.recording_frontend_priority_dvbt = ConfigSelection(default="-2", choices=dvbt_nims)
+	config.usage.frontend_priority_dvbc = ConfigSelection(default="-2", choices=list(dvbc_nims))
 	dvbc_nims.insert(1,("-1", _("auto")))
-	config.usage.recording_frontend_priority_dvbc = ConfigSelection(default = "-2", choices = dvbc_nims)
-	config.usage.frontend_priority_atsc = ConfigSelection(default = "-2", choices = list(atsc_nims))
+	config.usage.recording_frontend_priority_dvbc = ConfigSelection(default="-2", choices=dvbc_nims)
+	config.usage.frontend_priority_atsc = ConfigSelection(default="-2", choices=list(atsc_nims))
 	atsc_nims.insert(1,("-1", _("auto")))
-	config.usage.recording_frontend_priority_atsc = ConfigSelection(default = "-2", choices = atsc_nims)
+	config.usage.recording_frontend_priority_atsc = ConfigSelection(default="-2", choices=atsc_nims)
 
 	SystemInfo["DVB-S_priority_tuner_available"] = len(dvbs_nims) > 3 and any(len(i) > 2 for i in (dvbt_nims, dvbc_nims, atsc_nims))
 	SystemInfo["DVB-T_priority_tuner_available"] = len(dvbt_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbc_nims, atsc_nims))
 	SystemInfo["DVB-C_priority_tuner_available"] = len(dvbc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbt_nims, atsc_nims))
 	SystemInfo["ATSC_priority_tuner_available"] = len(atsc_nims) > 3 and any(len(i) > 2 for i in (dvbs_nims, dvbc_nims, dvbt_nims))
 
-	config.misc.disable_background_scan = ConfigYesNo(default = False)
-	config.misc.use_ci_assignment = ConfigYesNo(default = False)
-	config.usage.show_event_progress_in_servicelist = ConfigSelection(default = 'percright', choices = [
+	config.misc.disable_background_scan = ConfigYesNo(default=False)
+	config.misc.use_ci_assignment = ConfigYesNo(default=False)
+	config.usage.show_event_progress_in_servicelist = ConfigSelection(default='percright', choices=[
 		('barleft', _("Progress bar left")),
 		('barright', _("Progress bar right")),
 		('percleft', _("Percentage left")),
 		('percright', _("Percentage right")),
 		('no', _("no")) ])
-	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default = True)
+	config.usage.show_channel_numbers_in_servicelist = ConfigYesNo(default=True)
 	config.usage.show_event_progress_in_servicelist.addNotifier(refreshServiceList)
 	config.usage.show_channel_numbers_in_servicelist.addNotifier(refreshServiceList)
 
 	if displaytype == "7segment" or "7seg" in displaytype:
-		config.usage.blinking_display_clock_during_recording = ConfigSelection(default = "Rec", choices = [
+		config.usage.blinking_display_clock_during_recording = ConfigSelection(default="Rec", choices=[
 						("Rec", _("REC")),
 						("RecBlink", _("Blinking REC")),
 						("Time", _("Time")),
 						("Nothing", _("Nothing"))])
 	else:
-		config.usage.blinking_display_clock_during_recording = ConfigYesNo(default = False)
+		config.usage.blinking_display_clock_during_recording = ConfigYesNo(default=False)
 
 	if displaytype == "textlcd" or "text" in displaytype:
-		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default = "Channel", choices = [
+		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default="Channel", choices=[
 						("Rec", _("REC Symbol")),
 						("RecBlink", _("Blinking REC Symbol")),
 						("Channel", _("Channelname"))])
 	if displaytype == "7segment" or "7seg" in displaytype:
-		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default = "Rec", choices = [
+		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default="Rec", choices=[
 						("Rec", _("REC")),
 						("RecBlink", _("Blinking REC")),
 						("Time", _("Time"))])
 	else:
-		config.usage.blinking_rec_symbol_during_recording = ConfigYesNo(default = True)
+		config.usage.blinking_rec_symbol_during_recording = ConfigYesNo(default=True)
 
-	config.usage.show_in_standby = ConfigSelection(default = "time", choices = [
+	config.usage.show_in_standby = ConfigSelection(default="time", choices=[
 					("time", _("Time")),
 					("nothing", _("Nothing"))])
 
-	config.usage.show_message_when_recording_starts = ConfigYesNo(default = True)
+	config.usage.show_message_when_recording_starts = ConfigYesNo(default=True)
 
-	config.usage.load_length_of_movies_in_moviellist = ConfigYesNo(default = True)
-	config.usage.show_icons_in_movielist = ConfigSelection(default = 'i', choices = [
+	config.usage.load_length_of_movies_in_moviellist = ConfigYesNo(default=True)
+	config.usage.show_icons_in_movielist = ConfigSelection(default='i', choices=[
 		('o', _("Off")),
 		('p', _("Progress")),
 		('s', _("Small progress")),
 		('i', _("Icons")),
 	])
-	config.usage.movielist_unseen = ConfigYesNo(default = True)
-	config.usage.movielist_servicename_mode = ConfigSelection(default = "", choices = [
+	config.usage.movielist_unseen = ConfigYesNo(default=True)
+	config.usage.movielist_servicename_mode = ConfigSelection(default="", choices=[
 		("", _("None")),
 		("picon", _("Picon"))
 	])
-	config.usage.movielist_piconwidth = ConfigSelectionNumber(default = 100, stepwidth = 1, min = 50, max = 500, wraparound = True)
+	config.usage.movielist_piconwidth = ConfigSelectionNumber(default=100, stepwidth=1, min=50, max=500, wraparound=True)
 
-	config.usage.swap_snr_on_osd = ConfigYesNo(default = False)
-	config.usage.swap_time_display_on_osd = ConfigSelection(default = "0", choices = [("0", _("Skin Setting")), ("1", _("Mins")), ("2", _("Mins Secs")), ("3", _("Hours Mins")), ("4", _("Hours Mins Secs")), ("5", _("Percentage"))])
-	config.usage.swap_media_time_display_on_osd = ConfigSelection(default = "0", choices = [("0", _("Skin Setting")), ("1", _("Mins")), ("2", _("Mins Secs")), ("3", _("Hours Mins")), ("4", _("Hours Mins Secs")), ("5", _("Percentage"))])
-	config.usage.swap_time_remaining_on_osd = ConfigSelection(default = "0", choices = [("0", _("Remaining")), ("1", _("Elapsed")), ("2", _("Elapsed & Remaining")), ("3", _("Remaining & Elapsed"))])
-	config.usage.elapsed_time_positive_osd = ConfigYesNo(default = False)
-	config.usage.swap_time_display_on_vfd = ConfigSelection(default = "0", choices = [("0", _("Skin Setting")), ("1", _("Mins")), ("2", _("Mins Secs")), ("3", _("Hours Mins")), ("4", _("Hours Mins Secs")), ("5", _("Percentage"))])
-	config.usage.swap_media_time_display_on_vfd = ConfigSelection(default = "0", choices = [("0", _("Skin Setting")), ("1", _("Mins")), ("2", _("Mins Secs")), ("3", _("Hours Mins")), ("4", _("Hours Mins Secs")), ("5", _("Percentage"))])
-	config.usage.swap_time_remaining_on_vfd = ConfigSelection(default = "0", choices = [("0", _("Remaining")), ("1", _("Elapsed")), ("2", _("Elapsed & Remaining")), ("3", _("Remaining & Elapsed"))])
-	config.usage.elapsed_time_positive_vfd = ConfigYesNo(default = False)
+	config.usage.swap_snr_on_osd = ConfigYesNo(default=False)
+	config.usage.swap_time_display_on_osd = ConfigSelection(default="0", choices=[("0", _("Skin Setting")), ("1", _("Mins")), ("2", _("Mins Secs")), ("3", _("Hours Mins")), ("4", _("Hours Mins Secs")), ("5", _("Percentage"))])
+	config.usage.swap_media_time_display_on_osd = ConfigSelection(default="0", choices=[("0", _("Skin Setting")), ("1", _("Mins")), ("2", _("Mins Secs")), ("3", _("Hours Mins")), ("4", _("Hours Mins Secs")), ("5", _("Percentage"))])
+	config.usage.swap_time_remaining_on_osd = ConfigSelection(default="0", choices=[("0", _("Remaining")), ("1", _("Elapsed")), ("2", _("Elapsed & Remaining")), ("3", _("Remaining & Elapsed"))])
+	config.usage.elapsed_time_positive_osd = ConfigYesNo(default=False)
+	config.usage.swap_time_display_on_vfd = ConfigSelection(default="0", choices=[("0", _("Skin Setting")), ("1", _("Mins")), ("2", _("Mins Secs")), ("3", _("Hours Mins")), ("4", _("Hours Mins Secs")), ("5", _("Percentage"))])
+	config.usage.swap_media_time_display_on_vfd = ConfigSelection(default="0", choices=[("0", _("Skin Setting")), ("1", _("Mins")), ("2", _("Mins Secs")), ("3", _("Hours Mins")), ("4", _("Hours Mins Secs")), ("5", _("Percentage"))])
+	config.usage.swap_time_remaining_on_vfd = ConfigSelection(default="0", choices=[("0", _("Remaining")), ("1", _("Elapsed")), ("2", _("Elapsed & Remaining")), ("3", _("Remaining & Elapsed"))])
+	config.usage.elapsed_time_positive_vfd = ConfigYesNo(default=False)
 
-	config.usage.frontled_color = ConfigSelection(default = "2", choices = [("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
-	config.usage.frontledrec_color = ConfigSelection(default = "3", choices = [("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
-	config.usage.frontledstdby_color = ConfigSelection(default = "0", choices = [("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
-	config.usage.frontledrecstdby_color = ConfigSelection(default = "3", choices = [("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
+	config.usage.frontled_color = ConfigSelection(default="2", choices=[("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
+	config.usage.frontledrec_color = ConfigSelection(default="3", choices=[("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
+	config.usage.frontledstdby_color = ConfigSelection(default="0", choices=[("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
+	config.usage.frontledrecstdby_color = ConfigSelection(default="3", choices=[("0", _("Off")), ("1", _("Blue")), ("2", _("Red")), ("3", _("Blinking blue")), ("4", _("Blinking red"))])
 
-	config.usage.lcd_scroll_delay = ConfigSelection(default = "10000", choices = [
+	config.usage.lcd_scroll_delay = ConfigSelection(default="10000", choices=[
 		("10000", "10 " + _("seconds")),
 		("20000", "20 " + _("seconds")),
 		("30000", "30 " + _("seconds")),
 		("60000", "1 " + _("minute")),
 		("300000", "5 " + _("minutes")),
 		("noscrolling", _("off"))])
-	config.usage.lcd_scroll_speed = ConfigSelection(default = "300", choices = [
+	config.usage.lcd_scroll_speed = ConfigSelection(default="300", choices=[
 		("500", _("slow")),
 		("300", _("normal")),
 		("100", _("fast"))])
@@ -475,12 +475,12 @@ def InitUsageConfig():
 	else:
 		config.skin.onlyicon.value = False
 
-	config.usage.show_picon_in_display = ConfigYesNo(default = True)
-	config.usage.hide_zap_errors = ConfigYesNo(default = False)
-	config.usage.show_cryptoinfo = ConfigYesNo(default = True)
-	config.usage.show_eit_nownext = ConfigYesNo(default = True)
-	config.usage.show_vcr_scart = ConfigYesNo(default = False)
-	config.usage.show_update_disclaimer = ConfigYesNo(default = True)
+	config.usage.show_picon_in_display = ConfigYesNo(default=True)
+	config.usage.hide_zap_errors = ConfigYesNo(default=False)
+	config.usage.show_cryptoinfo = ConfigYesNo(default=True)
+	config.usage.show_eit_nownext = ConfigYesNo(default=True)
+	config.usage.show_vcr_scart = ConfigYesNo(default=False)
+	config.usage.show_update_disclaimer = ConfigYesNo(default=True)
 	config.usage.pic_resolution = ConfigSelection(default=None, choices=[(None, _("Same resolution as skin")), ("(720, 576)","720x576"), ("(1280, 720)", "1280x720"), ("(1920, 1080)", "1920x1080")][:SystemInfo["HasFullHDSkinSupport"] and 4 or 3])
 
 	config.usage.date = ConfigSubsection()
@@ -809,25 +809,25 @@ def InitUsageConfig():
 	if SystemInfo["StandbyLED"]:
 		def standbyLEDChanged(configElement):
 			open(SystemInfo["StandbyLED"], "w").write(configElement.value and "on" or "off")
-		config.usage.standbyLED = ConfigYesNo(default = True)
+		config.usage.standbyLED = ConfigYesNo(default=True)
 		config.usage.standbyLED.addNotifier(standbyLEDChanged)
 
 	if SystemInfo["SuspendLED"]:
 		def suspendLEDChanged(configElement):
 			open(SystemInfo["SuspendLED"], "w").write(configElement.value and "on" or "off")
-		config.usage.suspendLED = ConfigYesNo(default = True)
+		config.usage.suspendLED = ConfigYesNo(default=True)
 		config.usage.suspendLED.addNotifier(suspendLEDChanged)
 
 	if SystemInfo["PowerOffDisplay"]:
 		def powerOffDisplayChanged(configElement):
 			open(SystemInfo["PowerOffDisplay"], "w").write(configElement.value and "1" or "0")
-		config.usage.powerOffDisplay = ConfigYesNo(default = True)
+		config.usage.powerOffDisplay = ConfigYesNo(default=True)
 		config.usage.powerOffDisplay.addNotifier(powerOffDisplayChanged)
 
 	if SystemInfo["LCDshow_symbols"]:
 		def lcdShowSymbols(configElement):
 			open(SystemInfo["LCDshow_symbols"], "w").write(configElement.value and "1" or "0")
-		config.usage.lcd_show_symbols = ConfigYesNo(default = True)
+		config.usage.lcd_show_symbols = ConfigYesNo(default=True)
 		config.usage.lcd_show_symbols.addNotifier(lcdShowSymbols)
 
 	if SystemInfo["WakeOnLAN"] or getHaveWOL() == "True":
@@ -836,36 +836,36 @@ def InitUsageConfig():
 				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "enable" or "disable")
 			else:
 				open(SystemInfo["WakeOnLAN"], "w").write(configElement.value and "on" or "off")
-		config.usage.wakeOnLAN = ConfigYesNo(default = False)
+		config.usage.wakeOnLAN = ConfigYesNo(default=False)
 		config.usage.wakeOnLAN.addNotifier(wakeOnLANChanged)
 
 	if SystemInfo["LcdLiveTVMode"]:
 		def setLcdLiveTVMode(configElement):
 			open(SystemInfo["LcdLiveTVMode"], "w").write(configElement.value)
-		config.usage.LcdLiveTVMode = ConfigSelection(default = "0", choices=[str(x) for x in range(0,9)])
+		config.usage.LcdLiveTVMode = ConfigSelection(default="0", choices=[str(x) for x in range(0,9)])
 		config.usage.LcdLiveTVMode.addNotifier(setLcdLiveTVMode)
 
 	if SystemInfo["LcdLiveDecoder"]:
 		def setLcdLiveDecoder(configElement):
 			open(SystemInfo["LcdLiveDecoder"], "w").write(configElement.value)
-		config.usage.LcdLiveDecoder = ConfigSelection(default = "0", choices=[str(x) for x in range(0,4)])
+		config.usage.LcdLiveDecoder = ConfigSelection(default="0", choices=[str(x) for x in range(0,4)])
 		config.usage.LcdLiveDecoder.addNotifier(setLcdLiveDecoder)
 
 	config.usage.boolean_graphic = ConfigSelection(default="true", choices={"false": _("no"), "true": _("yes"), "only_bool": _("yes, but not in multi selections")})
 
-	config.osd.alpha_teletext = ConfigSelectionNumber(default = 255, stepwidth = 1, min = 0, max = 255, wraparound = False)
+	config.osd.alpha_teletext = ConfigSelectionNumber(default=255, stepwidth=1, min=0, max=255, wraparound=False)
 
 	config.epg = ConfigSubsection()
-	config.epg.eit = ConfigYesNo(default = True)
-	config.epg.mhw = ConfigYesNo(default = False)
-	config.epg.freesat = ConfigYesNo(default = False)
-	config.epg.viasat = ConfigYesNo(default = False)
-	config.epg.netmed = ConfigYesNo(default = False)
-	config.epg.virgin = ConfigYesNo(default = False)
-	config.epg.opentv = ConfigYesNo(default = False)
-	config.epg.saveepg = ConfigYesNo(default = True)
+	config.epg.eit = ConfigYesNo(default=True)
+	config.epg.mhw = ConfigYesNo(default=False)
+	config.epg.freesat = ConfigYesNo(default=False)
+	config.epg.viasat = ConfigYesNo(default=False)
+	config.epg.netmed = ConfigYesNo(default=False)
+	config.epg.virgin = ConfigYesNo(default=False)
+	config.epg.opentv = ConfigYesNo(default=False)
+	config.epg.saveepg = ConfigYesNo(default=True)
 
-	config.epg.maxdays = ConfigSelectionNumber(min = 1, max = 365, stepwidth = 1, default = 7, wraparound = True)
+	config.epg.maxdays = ConfigSelectionNumber(min=1, max=365, stepwidth=1, default=7, wraparound=True)
 	def EpgmaxdaysChanged(configElement):
 		from enigma import eEPGCache
 		eEPGCache.getInstance().setEpgmaxdays(config.epg.maxdays.getValue())
@@ -903,24 +903,24 @@ def InitUsageConfig():
 	config.epg.virgin.addNotifier(EpgSettingsChanged)
 	config.epg.opentv.addNotifier(EpgSettingsChanged)
 
-	config.epg.histminutes = ConfigSelectionNumber(min = 0, max = 120, stepwidth = 15, default = 0, wraparound = True)
+	config.epg.histminutes = ConfigSelectionNumber(min=0, max=120, stepwidth=15, default=0, wraparound=True)
 	def EpgHistorySecondsChanged(configElement):
 		from enigma import eEPGCache
 		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.getValue()*60)
 	config.epg.histminutes.addNotifier(EpgHistorySecondsChanged)
 
-	config.epg.cacheloadsched = ConfigYesNo(default = False)
-	config.epg.cachesavesched = ConfigYesNo(default = False)
+	config.epg.cacheloadsched = ConfigYesNo(default=False)
+	config.epg.cachesavesched = ConfigYesNo(default=False)
 	def EpgCacheLoadSchedChanged(configElement):
 		from Components import EpgLoadSave
 		EpgLoadSave.EpgCacheLoadCheck()
 	def EpgCacheSaveSchedChanged(configElement):
 		from Components import EpgLoadSave
 		EpgLoadSave.EpgCacheSaveCheck()
-	config.epg.cacheloadsched.addNotifier(EpgCacheLoadSchedChanged, immediate_feedback = False)
-	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback = False)
-	config.epg.cacheloadtimer = ConfigSelectionNumber(default = 24, stepwidth = 1, min = 1, max = 24, wraparound = True)
-	config.epg.cachesavetimer = ConfigSelectionNumber(default = 24, stepwidth = 1, min = 1, max = 24, wraparound = True)
+	config.epg.cacheloadsched.addNotifier(EpgCacheLoadSchedChanged, immediate_feedback=False)
+	config.epg.cachesavesched.addNotifier(EpgCacheSaveSchedChanged, immediate_feedback=False)
+	config.epg.cacheloadtimer = ConfigSelectionNumber(default=24, stepwidth=1, min=1, max=24, wraparound=True)
+	config.epg.cachesavetimer = ConfigSelectionNumber(default=24, stepwidth=1, min=1, max=24, wraparound=True)
 
 	hddchoises = [('/etc/enigma2/', 'Internal Flash')]
 	for p in harddiskmanager.getMountedPartitions():
@@ -928,9 +928,9 @@ def InitUsageConfig():
 			d = os.path.normpath(p.mountpoint)
 			if p.mountpoint != '/':
 				hddchoises.append((p.mountpoint, d))
-	config.misc.epgcachepath = ConfigSelection(default = '/etc/enigma2/', choices = hddchoises)
+	config.misc.epgcachepath = ConfigSelection(default='/etc/enigma2/', choices=hddchoises)
 	config.misc.epgcachefilename = ConfigText(default='epg', fixed_size=False)
-	config.misc.epgcache_filename = ConfigText(default = (config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
+	config.misc.epgcache_filename = ConfigText(default=(config.misc.epgcachepath.value + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
 	def EpgCacheChanged(configElement):
 		config.misc.epgcache_filename.setValue(os.path.join(config.misc.epgcachepath.value, config.misc.epgcachefilename.value.replace('.dat','') + '.dat'))
 		config.misc.epgcache_filename.save()
@@ -940,13 +940,13 @@ def InitUsageConfig():
 		if not config.misc.epgcache_filename.value.startswith("/etc/enigma2/"):
 			if os.path.exists('/etc/enigma2/' + config.misc.epgcachefilename.value.replace('.dat','') + '.dat'):
 				os.remove('/etc/enigma2/' + config.misc.epgcachefilename.value.replace('.dat','') + '.dat')
-	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback = False)
-	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback = False)
+	config.misc.epgcachepath.addNotifier(EpgCacheChanged, immediate_feedback=False)
+	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback=False)
 
 	config.misc.epgratingcountry = ConfigSelection(default="", choices=[("", _("Auto Detect")), ("ETSI", _("Generic")), ("AUS", _("Australia"))])
 	config.misc.epggenrecountry = ConfigSelection(default="", choices=[("", _("Auto Detect")), ("ETSI", _("Generic")), ("AUS", _("Australia"))])
 
-	config.misc.showradiopic = ConfigYesNo(default = True)
+	config.misc.showradiopic = ConfigYesNo(default=True)
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
@@ -958,8 +958,8 @@ def InitUsageConfig():
 			Misc_Options.getInstance().set_12V_output(configElement.value == "on" and 1 or 0)
 		config.usage.output_12V.addNotifier(set12VOutput, immediate_feedback=False)
 
-	config.usage.keymap = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keymap.xml"))
-	config.usage.keytrans = ConfigText(default = eEnv.resolve("${datadir}/enigma2/keytranslation.xml"))
+	config.usage.keymap = ConfigText(default=eEnv.resolve("${datadir}/enigma2/keymap.xml"))
+	config.usage.keytrans = ConfigText(default=eEnv.resolve("${datadir}/enigma2/keytranslation.xml"))
 	config.usage.alternative_imagefeed = ConfigText(default="", fixed_size=False)
 
 	config.crash = ConfigSubsection()
@@ -974,11 +974,11 @@ def InitUsageConfig():
 		else:
 			StackTracePrinter.getInstance().deactivate()
 
-	config.crash.pystackonspinner = ConfigYesNo(default = False)
-	config.crash.pystackonspinner.addNotifier(updateStackTracePrinter, immediate_feedback = False, initial_call = True)
+	config.crash.pystackonspinner = ConfigYesNo(default=False)
+	config.crash.pystackonspinner.addNotifier(updateStackTracePrinter, immediate_feedback=False, initial_call=True)
 
 	# config.crash.logtimeformat sets ENIGMA_DEBUG_TIME environmental variable on enigma2 start from enigma2.sh
-	config.crash.logtimeformat = ConfigSelection(default = "1", choices = [
+	config.crash.logtimeformat = ConfigSelection(default="1", choices=[
 		("0", _("None")),
 		("1", _("Boot time")),
 		("2", _("Local time")),
@@ -991,12 +991,12 @@ def InitUsageConfig():
 			d = os.path.normpath(p.mountpoint)
 			if p.mountpoint != '/':
 				debugpath.append((p.mountpoint + '/logs/', d))
-	config.crash.debug_path = ConfigSelection(default = "/home/root/logs/", choices = debugpath)
+	config.crash.debug_path = ConfigSelection(default="/home/root/logs/", choices=debugpath)
 
 	def updatedebug_path(configElement):
 		if not os.path.exists(config.crash.debug_path.value):
 			os.mkdir(config.crash.debug_path.value,0o755)
-	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback = False)
+	config.crash.debug_path.addNotifier(updatedebug_path, immediate_feedback=False)
 
 	config.seek = ConfigSubsection()
 	config.seek.selfdefined_13 = ConfigNumber(default=15)
@@ -1007,55 +1007,55 @@ def InitUsageConfig():
 	config.seek.speeds_backward = ConfigSet(default=[1, 2, 4, 8, 16, 32, 64, 128], choices=[1, 2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
 	config.seek.speeds_slowmotion = ConfigSet(default=[2, 4, 8], choices=[2, 4, 6, 8, 12, 16, 25])
 
-	config.seek.enter_forward = ConfigSelection(default = 2, choices = [2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
-	config.seek.enter_backward = ConfigSelection(default = 1, choices = [1, 2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
+	config.seek.enter_forward = ConfigSelection(default=2, choices=[2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
+	config.seek.enter_backward = ConfigSelection(default=1, choices=[1, 2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
 
-	config.seek.on_pause = ConfigSelection(default = "play", choices = [
+	config.seek.on_pause = ConfigSelection(default="play", choices=[
 		("play", _("Play")),
 		("step", _("Single step (GOP)")),
 		("last", _("Last speed")) ])
 
-	config.usage.timerlist_finished_timer_position = ConfigSelection(default = "end", choices = [("beginning", _("At beginning")), ("end", _("At end"))])
+	config.usage.timerlist_finished_timer_position = ConfigSelection(default="end", choices=[("beginning", _("At beginning")), ("end", _("At end"))])
 
 	def updateEnterForward(configElement):
 		if not configElement.value:
 			configElement.value = [2]
 		updateChoices(config.seek.enter_forward, configElement.value)
 
-	config.seek.speeds_forward.addNotifier(updateEnterForward, immediate_feedback = False)
+	config.seek.speeds_forward.addNotifier(updateEnterForward, immediate_feedback=False)
 
 	def updateEnterBackward(configElement):
 		if not configElement.value:
 			configElement.value = [2]
 		updateChoices(config.seek.enter_backward, configElement.value)
 
-	config.seek.speeds_backward.addNotifier(updateEnterBackward, immediate_feedback = False)
+	config.seek.speeds_backward.addNotifier(updateEnterBackward, immediate_feedback=False)
 
 	def updateEraseSpeed(el):
 		eBackgroundFileEraser.getInstance().setEraseSpeed(int(el.value))
 	def updateEraseFlags(el):
 		eBackgroundFileEraser.getInstance().setEraseFlags(int(el.value))
-	config.misc.erase_speed = ConfigSelection(default="20", choices = [
+	config.misc.erase_speed = ConfigSelection(default="20", choices=[
 		("10", _("10 MB/s")),
 		("20", _("20 MB/s")),
 		("50", _("50 MB/s")),
 		("100", _("100 MB/s"))])
-	config.misc.erase_speed.addNotifier(updateEraseSpeed, immediate_feedback = False)
-	config.misc.erase_flags = ConfigSelection(default="1", choices = [
+	config.misc.erase_speed.addNotifier(updateEraseSpeed, immediate_feedback=False)
+	config.misc.erase_flags = ConfigSelection(default="1", choices=[
 		("0", _("Disable")),
 		("1", _("Internal hdd only")),
 		("3", _("Everywhere"))])
-	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback = False)
+	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback=False)
 
-	config.misc.zapkey_delay = ConfigSelectionNumber(default = 5, stepwidth = 1, min = 0, max = 20, wraparound = True)
-	config.misc.numzap_picon = ConfigYesNo(default = False)
+	config.misc.zapkey_delay = ConfigSelectionNumber(default=5, stepwidth=1, min=0, max=20, wraparound=True)
+	config.misc.numzap_picon = ConfigYesNo(default=False)
 
 	if SystemInfo["ZapMode"]:
 		def setZapmode(el):
 			open(SystemInfo["ZapMode"], "w").write(el.value)
-		config.misc.zapmode = ConfigSelection(default = "mute", choices = [
+		config.misc.zapmode = ConfigSelection(default="mute", choices=[
 			("mute", _("Black screen")), ("hold", _("Hold screen")), ("mutetilllock", _("Black screen till locked")), ("holdtilllock", _("Hold till locked"))])
-		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback = False)
+		config.misc.zapmode.addNotifier(setZapmode, immediate_feedback=False)
 
 	if SystemInfo["VFD_scroll_repeats"]:
 		def scroll_repeats(el):
@@ -1063,8 +1063,8 @@ def InitUsageConfig():
 		choicelist = []
 		for i in range(1, 11, 1):
 			choicelist.append((str(i)))
-		config.usage.vfd_scroll_repeats = ConfigSelection(default = "3", choices = choicelist)
-		config.usage.vfd_scroll_repeats.addNotifier(scroll_repeats, immediate_feedback = False)
+		config.usage.vfd_scroll_repeats = ConfigSelection(default="3", choices=choicelist)
+		config.usage.vfd_scroll_repeats.addNotifier(scroll_repeats, immediate_feedback=False)
 
 	if SystemInfo["VFD_scroll_delay"]:
 		def scroll_delay(el):
@@ -1072,8 +1072,8 @@ def InitUsageConfig():
 		choicelist = []
 		for i in range(0, 1001, 50):
 			choicelist.append((str(i)))
-		config.usage.vfd_scroll_delay = ConfigSelection(default = "150", choices = choicelist)
-		config.usage.vfd_scroll_delay.addNotifier(scroll_delay, immediate_feedback = False)
+		config.usage.vfd_scroll_delay = ConfigSelection(default="150", choices=choicelist)
+		config.usage.vfd_scroll_delay.addNotifier(scroll_delay, immediate_feedback=False)
 
 	if SystemInfo["VFD_initial_scroll_delay"]:
 		def initial_scroll_delay(el):
@@ -1081,8 +1081,8 @@ def InitUsageConfig():
 		choicelist = []
 		for i in range(0, 20001, 500):
 			choicelist.append((str(i)))
-		config.usage.vfd_initial_scroll_delay = ConfigSelection(default = "1000", choices = choicelist)
-		config.usage.vfd_initial_scroll_delay.addNotifier(initial_scroll_delay, immediate_feedback = False)
+		config.usage.vfd_initial_scroll_delay = ConfigSelection(default="1000", choices=choicelist)
+		config.usage.vfd_initial_scroll_delay.addNotifier(initial_scroll_delay, immediate_feedback=False)
 
 	if SystemInfo["VFD_final_scroll_delay"]:
 		def final_scroll_delay(el):
@@ -1090,8 +1090,8 @@ def InitUsageConfig():
 		choicelist = []
 		for i in range(0, 20001, 500):
 			choicelist.append((str(i)))
-		config.usage.vfd_final_scroll_delay = ConfigSelection(default = "1000", choices = choicelist)
-		config.usage.vfd_final_scroll_delay.addNotifier(final_scroll_delay, immediate_feedback = False)
+		config.usage.vfd_final_scroll_delay = ConfigSelection(default="1000", choices=choicelist)
+		config.usage.vfd_final_scroll_delay.addNotifier(final_scroll_delay, immediate_feedback=False)
 
 	if SystemInfo["HasBypassEdidChecking"]:
 		def setHasBypassEdidChecking(configElement):
@@ -1103,7 +1103,7 @@ def InitUsageConfig():
 		def setHaveColorspace(configElement):
 			open(SystemInfo["HasColorspace"], "w").write(configElement.value)
 		if SystemInfo["HasColorspaceSimple"]:
-			config.av.hdmicolorspace = ConfigSelection(default = "Edid(Auto)", choices={"Edid(Auto)": _("Auto"), "Hdmi_Rgb": _("RGB"), "444": _("YCbCr444"), "422": _("YCbCr422"), "420": _("YCbCr420")})
+			config.av.hdmicolorspace = ConfigSelection(default="Edid(Auto)", choices={"Edid(Auto)": _("Auto"), "Hdmi_Rgb": _("RGB"), "444": _("YCbCr444"), "422": _("YCbCr422"), "420": _("YCbCr420")})
 		else:
 			if model == "vuzero4k" or getMachineBuild() == "dm4kgen":
 				config.av.hdmicolorspace = ConfigSelection(choices={
@@ -1119,15 +1119,15 @@ def InitUsageConfig():
 						"Itu_R_BT_2020_CL": _("BT2020 CL"),
 						"XvYCC_709": _("BT709 XvYCC"),
 						"XvYCC_601": _("BT601 XvYCC")},
-						default = "Edid(Auto)")
+						default="Edid(Auto)")
 			else:
-				config.av.hdmicolorspace = ConfigSelection(default = "auto", choices={"auto": _("auto"), "rgb": _("rgb"), "420": _("420"), "422": _("422"), "444": _("444")})
+				config.av.hdmicolorspace = ConfigSelection(default="auto", choices={"auto": _("auto"), "rgb": _("rgb"), "420": _("420"), "422": _("422"), "444": _("444")})
 		config.av.hdmicolorspace.addNotifier(setHaveColorspace)
 
 	if SystemInfo["HasColordepth"]:
 		def setHaveColordepth(configElement):
 			open(SystemInfo["HasColordepth"], "w").write(configElement.value)
-		config.av.hdmicolordepth = ConfigSelection(default = "auto", choices={"auto": _("Auto"), "8bit": _("8bit"), "10bit": _("10bit"), "12bit": _("12bit")})
+		config.av.hdmicolordepth = ConfigSelection(default="auto", choices={"auto": _("Auto"), "8bit": _("8bit"), "10bit": _("10bit"), "12bit": _("12bit")})
 		config.av.hdmicolordepth.addNotifier(setHaveColordepth)
 
 	if SystemInfo["HasHDMIpreemphasis"]:
@@ -1139,26 +1139,26 @@ def InitUsageConfig():
 	if SystemInfo["HasColorimetry"]:
 		def setColorimetry(configElement):
 			open(SystemInfo["HasColorimetry"], "w").write(configElement.value)
-		config.av.hdmicolorimetry = ConfigSelection(default = "auto", choices = [("auto", _("Auto")), ("bt2020ncl", _("BT 2020 NCL")), ("bt2020cl", _("BT 2020 CL")), ("bt709", _("BT 709"))])
+		config.av.hdmicolorimetry = ConfigSelection(default="auto", choices=[("auto", _("Auto")), ("bt2020ncl", _("BT 2020 NCL")), ("bt2020cl", _("BT 2020 CL")), ("bt709", _("BT 709"))])
 		config.av.hdmicolorimetry.addNotifier(setColorimetry)
 
 	if SystemInfo["HasHdrType"]:
 		def setHdmiHdrType(configElement):
 			open(SystemInfo["HasHdrType"], "w").write(configElement.value)
-		config.av.hdmihdrtype = ConfigSelection(default = "auto", choices={"auto": _("Auto"), "none": _("SDR"), "hdr10": _("HDR10"), "hlg": _("HLG"), "dolby": _("Dolby")})
+		config.av.hdmihdrtype = ConfigSelection(default="auto", choices={"auto": _("Auto"), "none": _("SDR"), "hdr10": _("HDR10"), "hlg": _("HLG"), "dolby": _("Dolby")})
 		config.av.hdmihdrtype.addNotifier(setHdmiHdrType)
 
 	if SystemInfo["HDRSupport"]:
 		def setHlgSupport(configElement):
 			open("/proc/stb/hdmi/hlg_support", "w").write(configElement.value)
-		config.av.hlg_support = ConfigSelection(default = "auto(EDID)",
-			choices = [ ("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled")) ])
+		config.av.hlg_support = ConfigSelection(default="auto(EDID)",
+			choices=[ ("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled")) ])
 		config.av.hlg_support.addNotifier(setHlgSupport)
 
 		def setHdr10Support(configElement):
 			open("/proc/stb/hdmi/hdr10_support", "w").write(configElement.value)
-		config.av.hdr10_support = ConfigSelection(default = "auto(EDID)",
-			choices = [ ("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled")) ])
+		config.av.hdr10_support = ConfigSelection(default="auto(EDID)",
+			choices=[ ("auto(EDID)", _("controlled by HDMI")), ("yes", _("force enabled")), ("no", _("force disabled")) ])
 		config.av.hdr10_support.addNotifier(setHdr10Support)
 
 		def setDisable12Bit(configElement):
@@ -1172,19 +1172,19 @@ def InitUsageConfig():
 		config.av.allow_10bit.addNotifier(setDisable10Bit)
 
 	config.subtitles = ConfigSubsection()
-	config.subtitles.show = ConfigYesNo(default = True)
-	config.subtitles.ttx_subtitle_colors = ConfigSelection(default = "1", choices = [
+	config.subtitles.show = ConfigYesNo(default=True)
+	config.subtitles.ttx_subtitle_colors = ConfigSelection(default="1", choices=[
 		("0", _("original")),
 		("1", _("white")),
 		("2", _("yellow")) ])
-	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default = False)
-	config.subtitles.ttx_subtitle_position = ConfigSelection( choices = ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"], default = "50")
-	config.subtitles.subtitle_alignment = ConfigSelection(choices = [("left", _("left")), ("center", _("center")), ("right", _("right"))], default = "center")
-	config.subtitles.subtitle_rewrap = ConfigYesNo(default = False)
-	config.subtitles.colourise_dialogs = ConfigYesNo(default = False)
-	config.subtitles.subtitle_borderwidth = ConfigSelection(choices = ["1", "2", "3", "4", "5"], default = "3")
-	config.subtitles.subtitle_fontsize = ConfigSelection(choices = ["%d" % x for x in range(16,101) if not x % 2], default = "40")
-	config.subtitles.showbackground = ConfigYesNo(default = False)
+	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default=False)
+	config.subtitles.ttx_subtitle_position = ConfigSelection( choices=["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"], default="50")
+	config.subtitles.subtitle_alignment = ConfigSelection(choices=[("left", _("left")), ("center", _("center")), ("right", _("right"))], default="center")
+	config.subtitles.subtitle_rewrap = ConfigYesNo(default=False)
+	config.subtitles.colourise_dialogs = ConfigYesNo(default=False)
+	config.subtitles.subtitle_borderwidth = ConfigSelection(choices=["1", "2", "3", "4", "5"], default="3")
+	config.subtitles.subtitle_fontsize = ConfigSelection(choices=["%d" % x for x in range(16,101) if not x % 2], default="40")
+	config.subtitles.showbackground = ConfigYesNo(default=False)
 
 	subtitle_delay_choicelist = []
 	for i in range(-900000, 1845000, 45000):
@@ -1192,14 +1192,14 @@ def InitUsageConfig():
 			subtitle_delay_choicelist.append(("0", _("No delay")))
 		else:
 			subtitle_delay_choicelist.append((str(i), _("%2.1f sec") % (i / 90000.)))
-	config.subtitles.subtitle_noPTSrecordingdelay = ConfigSelection(default = "315000", choices = subtitle_delay_choicelist)
+	config.subtitles.subtitle_noPTSrecordingdelay = ConfigSelection(default="315000", choices=subtitle_delay_choicelist)
 
-	config.subtitles.dvb_subtitles_yellow = ConfigYesNo(default = False)
-	config.subtitles.dvb_subtitles_original_position = ConfigSelection(default = "0", choices = [("0", _("Original")), ("1", _("Fixed")), ("2", _("Relative"))])
+	config.subtitles.dvb_subtitles_yellow = ConfigYesNo(default=False)
+	config.subtitles.dvb_subtitles_original_position = ConfigSelection(default="0", choices=[("0", _("Original")), ("1", _("Fixed")), ("2", _("Relative"))])
 	config.subtitles.subtitle_position = ConfigSelection(default="50", choices=["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100", "150", "200", "250", "300", "350", "400", "450"])
-	config.subtitles.dvb_subtitles_centered = ConfigYesNo(default = False)
-	config.subtitles.subtitle_bad_timing_delay = ConfigSelection(default = "0", choices = subtitle_delay_choicelist)
-	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default = "0", choices = [
+	config.subtitles.dvb_subtitles_centered = ConfigYesNo(default=False)
+	config.subtitles.subtitle_bad_timing_delay = ConfigSelection(default="0", choices=subtitle_delay_choicelist)
+	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default="0", choices=[
 		("0", _("No transparency")),
 		("25", "10%"),
 		("50", "20%"),
@@ -1211,21 +1211,21 @@ def InitUsageConfig():
 		("200", "80%"),
 		("225", "90%"),
 		("255", _("Full transparency"))])
-	config.subtitles.pango_subtitle_colors = ConfigSelection(default = "1", choices = [
+	config.subtitles.pango_subtitle_colors = ConfigSelection(default="1", choices=[
 		("0", _("alternative")),
 		("1", _("white")),
 		("2", _("yellow")) ])
-	config.subtitles.pango_subtitle_fontswitch = ConfigYesNo(default = True)
-	config.subtitles.pango_subtitles_delay = ConfigSelection(default = "0", choices = subtitle_delay_choicelist)
-	config.subtitles.pango_subtitles_fps = ConfigSelection(default = "1", choices = [
+	config.subtitles.pango_subtitle_fontswitch = ConfigYesNo(default=True)
+	config.subtitles.pango_subtitles_delay = ConfigSelection(default="0", choices=subtitle_delay_choicelist)
+	config.subtitles.pango_subtitles_fps = ConfigSelection(default="1", choices=[
 		("1", _("Original")),
 		("23976", _("23.976")),
 		("24000", _("24")),
 		("25000", _("25")),
 		("29970", _("29.97")),
 		("30000", _("30"))])
-	config.subtitles.pango_subtitle_removehi = ConfigYesNo(default = False)
-	config.subtitles.pango_autoturnon = ConfigYesNo(default = True)
+	config.subtitles.pango_subtitle_removehi = ConfigYesNo(default=False)
+	config.subtitles.pango_autoturnon = ConfigYesNo(default=True)
 
 	config.autolanguage = ConfigSubsection()
 	audio_language_choices=[
@@ -1298,9 +1298,9 @@ def InitUsageConfig():
 	config.autolanguage.audio_autoselect2.addNotifier(autolanguage, initial_call=False)
 	config.autolanguage.audio_autoselect3.addNotifier(autolanguage, initial_call=False)
 	config.autolanguage.audio_autoselect4.addNotifier(autolanguage)
-	config.autolanguage.audio_defaultac3 = ConfigYesNo(default = True)
-	config.autolanguage.audio_defaultddp = ConfigYesNo(default = False)
-	config.autolanguage.audio_usecache = ConfigYesNo(default = True)
+	config.autolanguage.audio_defaultac3 = ConfigYesNo(default=True)
+	config.autolanguage.audio_defaultddp = ConfigYesNo(default=False)
+	config.autolanguage.audio_usecache = ConfigYesNo(default=True)
 
 	subtitle_language_choices = audio_language_choices[:1] + audio_language_choices [2:]
 	def getselectedsublanguages(range):
@@ -1325,10 +1325,10 @@ def InitUsageConfig():
 	config.autolanguage.subtitle_autoselect2.addNotifier(autolanguagesub, initial_call=False)
 	config.autolanguage.subtitle_autoselect3.addNotifier(autolanguagesub, initial_call=False)
 	config.autolanguage.subtitle_autoselect4.addNotifier(autolanguagesub)
-	config.autolanguage.subtitle_hearingimpaired = ConfigYesNo(default = False)
-	config.autolanguage.subtitle_defaultimpaired = ConfigYesNo(default = False)
-	config.autolanguage.subtitle_defaultdvb = ConfigYesNo(default = False)
-	config.autolanguage.subtitle_usecache = ConfigYesNo(default = True)
+	config.autolanguage.subtitle_hearingimpaired = ConfigYesNo(default=False)
+	config.autolanguage.subtitle_defaultimpaired = ConfigYesNo(default=False)
+	config.autolanguage.subtitle_defaultdvb = ConfigYesNo(default=False)
+	config.autolanguage.subtitle_usecache = ConfigYesNo(default=True)
 
 	config.visionsettings = ConfigSubsection()
 
@@ -1337,28 +1337,28 @@ def InitUsageConfig():
 		config.oscaminfo.showInExtensions = ConfigYesNo(default=True)
 	else:
 		config.oscaminfo.showInExtensions = ConfigYesNo(default=False)
-	config.oscaminfo.userdatafromconf = ConfigYesNo(default = True)
-	config.oscaminfo.autoupdate = ConfigYesNo(default = False)
-	config.oscaminfo.username = ConfigText(default = "username", fixed_size = False, visible_width=12)
-	config.oscaminfo.password = ConfigPassword(default = "password", fixed_size = False)
-	config.oscaminfo.ip = ConfigIP( default = [ 127,0,0,1 ], auto_jump=True)
-	config.oscaminfo.port = ConfigInteger(default = 16002, limits=(0,65536) )
-	config.oscaminfo.intervall = ConfigSelectionNumber(min = 1, max = 600, stepwidth = 1, default = 10, wraparound = True)
+	config.oscaminfo.userdatafromconf = ConfigYesNo(default=True)
+	config.oscaminfo.autoupdate = ConfigYesNo(default=False)
+	config.oscaminfo.username = ConfigText(default="username", fixed_size=False, visible_width=12)
+	config.oscaminfo.password = ConfigPassword(default="password", fixed_size=False)
+	config.oscaminfo.ip = ConfigIP( default=[ 127,0,0,1 ], auto_jump=True)
+	config.oscaminfo.port = ConfigInteger(default=16002, limits=(0,65536) )
+	config.oscaminfo.intervall = ConfigSelectionNumber(min=1, max=600, stepwidth=1, default=10, wraparound=True)
 
 	config.streaming = ConfigSubsection()
-	config.streaming.stream_ecm = ConfigYesNo(default = False)
-	config.streaming.descramble = ConfigYesNo(default = True)
-	config.streaming.descramble_client = ConfigYesNo(default = False)
-	config.streaming.stream_eit = ConfigYesNo(default = True)
-	config.streaming.stream_ait = ConfigYesNo(default = True)
-	config.streaming.authentication = ConfigYesNo(default = False)
+	config.streaming.stream_ecm = ConfigYesNo(default=False)
+	config.streaming.descramble = ConfigYesNo(default=True)
+	config.streaming.descramble_client = ConfigYesNo(default=False)
+	config.streaming.stream_eit = ConfigYesNo(default=True)
+	config.streaming.stream_ait = ConfigYesNo(default=True)
+	config.streaming.authentication = ConfigYesNo(default=False)
 
 	config.mediaplayer = ConfigSubsection()
 	config.mediaplayer.useAlternateUserAgent = ConfigYesNo(default=False)
 	config.mediaplayer.alternateUserAgent = ConfigText(default="")
 
 	config.misc.softcam_setup = ConfigSubsection()
-	config.misc.softcam_setup.extension_menu = ConfigYesNo(default = True)
+	config.misc.softcam_setup.extension_menu = ConfigYesNo(default=True)
 
 def updateChoices(sel, choices):
 	if choices:
