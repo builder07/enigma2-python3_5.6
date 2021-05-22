@@ -643,7 +643,7 @@ if test "$BOXTYPE" == "tiviarmin"; then
 fi
 
 if test "$BOXBRAND" == "dinobot"; then
-	AC_DEFINE(HAVE_HISILICON, 1,[define it's a HISILICON chip])
+	AC_DEFINE(HAVE_HISILICON, 1,[define its a HISILICON chip])
 fi
 
 if test "$STBPLATFORM" == "u53" -o "$STBPLATFORM" == "u532" -o "$STBPLATFORM" == "u533"; then
