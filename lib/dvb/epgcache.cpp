@@ -1101,24 +1101,22 @@ void eEPGCache::flushEPG(const uniqueEPGKey & s)
 			// remove this service's channel from lastupdated map
 			for (updateMap::iterator it = channelLastUpdated.begin(); it != channelLastUpdated.end(); )
 			{
-                                const eDVBChannelID &chid = it->first;
-                                if(chid.original_network_id == s.onid && chid.transport_stream_id == s.tsid)
+				const eDVBChannelID &chid = it->first;
+				if(chid.original_network_id == s.onid && chid.transport_stream_id == s.tsid)
 					it = channelLastUpdated.erase(it);
 				else
 					++it;
 			}
-
-                        singleLock m(channel_map_lock);
-                        for (ChannelMap::const_iterator it(m_knownChannels.begin
-()); it != m_knownChannels.end(); ++it)
-                        {
-                                const eDVBChannelID chid = it->second->channel->getChannelID();
-                                if(chid.original_network_id == s.onid && chid.transport_stream_id == s.tsid)
-                                {
+			singleLock m(channel_map_lock);
+			for (ChannelMap::const_iterator it(m_knownChannels.begin()); it != m_knownChannels.end(); ++it)
+			{
+				const eDVBChannelID chid = it->second->channel->getChannelID();
+				if(chid.original_network_id == s.onid && chid.transport_stream_id == s.tsid)
+				{
 					it->second->abortEPG();
 					it->second->startChannel();
-                                }
-                        }
+				}
+			}
 		}
 	}
 	else // clear complete EPG Cache
