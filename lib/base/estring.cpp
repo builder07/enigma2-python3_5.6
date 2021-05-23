@@ -237,6 +237,7 @@ static inline unsigned int doVideoTexSuppl(int c1, int c2)
 				case 0x49: return 298;				case 0x69: return 299;
 				case 0x4f: return 332;				case 0x6f: return 333;
 			}
+			[[fallthrough]];
 		case 0xC6: // breve
 			switch (c2)
 			{
