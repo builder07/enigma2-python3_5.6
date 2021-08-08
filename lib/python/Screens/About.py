@@ -82,7 +82,9 @@ class About(Screen):
 		EnigmaVersion = _("Enigma2 version: ") + EnigmaVersion
 		self["EnigmaVersion"] = StaticText(EnigmaVersion)
 		AboutText += "\n" + EnigmaVersion + "\n"
-		AboutText += _("Last update: ") + about.getUpdateDateString() + "\n"
+		ImageVersion = _("Last update: ") + about.getImageVersionString()
+		self["ImageVersion"] = StaticText(ImageVersion)
+		AboutText += ImageVersion + "\n"
 		AboutText += _("Enigma2 (re)starts: %d\n") % config.misc.startCounter.value
 		AboutText += _("Enigma2 debug level: %d\n") % eGetEnigmaDebugLvl()
 
