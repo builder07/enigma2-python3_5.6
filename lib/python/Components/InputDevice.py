@@ -53,8 +53,8 @@ class inputDevices:
 			try:
 				buffer = "\0" * 512
 				self.fd = os.open("/dev/input/" + evdev, os.O_RDWR | os.O_NONBLOCK)
-				self.name = ioctl(self.fd, EVIOCGNAME(256), buffer)
-				self.name = self.name[:self.name.find(b"\0")]
+				self.name = ioctl(self.fd, EVIOCGNAME(256), buffer).decode()
+				self.name = self.name[:self.name.find("\0")]
 				os.close(self.fd)
 			except (IOError, OSError) as err:
 				print("[InputDevice] getInputDevices " + evdev + " <ERROR: ioctl(EVIOCGNAME): " + str(err) + " >")
@@ -78,7 +78,7 @@ class inputDevices:
 
 	def getDeviceName(self, x):
 		if x in self.Devices.keys():
-			return self.Devices[x].get("name", x).decode()
+			return self.Devices[x].get("name", x)
 		else:
 			return "Unknown device name"
 
