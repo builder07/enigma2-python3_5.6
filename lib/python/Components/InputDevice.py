@@ -72,6 +72,8 @@ class inputDevices:
 			return "keyboard"
 		elif "mouse" in str(name).lower():
 			return "mouse"
+		elif "dreambox front panel" in str(name).lower():
+			return "frontpanel"
 		else:
 			print("[InputDevice] Unknown device type:", name)
 			return None
