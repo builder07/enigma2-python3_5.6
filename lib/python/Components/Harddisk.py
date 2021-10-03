@@ -945,6 +945,7 @@ class MkfsTask(Task.LoggingTask):
 		self.fsck_state = None
 
 	def processOutput(self, data):
+		data = data.decode()
 		print("[Harddisk] Mkfs", data)
 		if 'Writing inode tables:' in data:
 			self.fsck_state = 'inode'
