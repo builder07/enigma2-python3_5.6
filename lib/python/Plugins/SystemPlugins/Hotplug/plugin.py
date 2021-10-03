@@ -73,6 +73,7 @@ class Hotplug(Protocol):
 		self.received = ""
 
 	def dataReceived(self, data):
+		data = data.decode()
 		self.received += data
 		print("[Hotplug] complete", self.received)
 
