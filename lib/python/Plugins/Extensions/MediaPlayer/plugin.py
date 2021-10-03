@@ -214,10 +214,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 
 			"up": self.up,
 			"upRepeated": self.up,
-			"upUp": self.doNothing,
 			"down": self.down,
 			"downRepeated": self.down,
-			"downUp": self.doNothing,
 		}, -2)
 
 		InfoBarSeek.__init__(self, actionmap="MediaPlayerSeekActions")

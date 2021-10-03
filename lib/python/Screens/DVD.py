@@ -206,8 +206,6 @@ class DVDPlayer(Screen, InfoBarBase, InfoBarNotifications, InfoBarSeek, InfoBarP
 				#MENU KEY UP ACTIONS
 				"leftUp": self.doNothing,
 				"rightUp": self.doNothing,
-				"upUp": self.doNothing,
-				"downUp": self.doNothing,
 			})
 
 		self["OkCancelActions"] = ActionMap(["OkCancelActions"],
