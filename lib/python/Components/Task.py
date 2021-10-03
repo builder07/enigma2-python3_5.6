@@ -270,8 +270,8 @@ class LoggingTask(Task):
 		self.log = []
 
 	def processOutput(self, data):
-		print("[Task] %s" % self.name, data,
-		self.log.append(data.decode()))
+		print("[Task] %s" % self.name, data)
+		self.log.append(data.decode())
 
 
 class PythonTask(Task):
