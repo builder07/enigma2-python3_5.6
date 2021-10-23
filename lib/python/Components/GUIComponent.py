@@ -88,8 +88,10 @@ class GUIComponent(object):
 		self.instance.move(ePoint(int(x), int(y)))
 
 	def getPosition(self):
-		p = self.instance.position()
-		return (p.x(), p.y())
+		if self.instance is not None:
+			p = self.instance.position()
+			return (p.x(), p.y())
+		return [ 0, 0 ]
 
 	def getWidth(self):
 		return self.width
