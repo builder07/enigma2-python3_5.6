@@ -1154,7 +1154,6 @@ class VirtualKeyBoard(Screen, HelpableScreen):
 	def processSelect(self):
 		self.smsChar = None
 		text = self.keyList[self.shiftLevel][self.selectedKey // self.keyboardWidth][self.selectedKey % self.keyboardWidth]
-		print("TEXT IS: ", text)
 		cmd = self.cmds.get(text.upper(), None)
 		if cmd is None:
 			self['text'].char(text)
