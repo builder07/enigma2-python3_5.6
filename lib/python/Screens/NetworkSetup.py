@@ -1723,6 +1723,7 @@ class NetworkAdapterTest(Screen):
 			iNetwork.getLinkState(iface, self.LinkStatedataAvail)
 
 	def LinkStatedataAvail(self, data):
+		data = data.decode()
 		for item in data.splitlines():
 			if "Link detected:" in item:
 				if "yes" in item:
