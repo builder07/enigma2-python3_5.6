@@ -226,7 +226,7 @@ class ServiceInfo(Converter):
 				elif self.type == self.YRES:
 					return self.getServiceInfoString(info, iServiceInformation.sVideoHeight)
 				elif self.type == self.FRAMERATE:
-					return self.getServiceInfoString(info, iServiceInformation.sFrameRate, lambda x: _("%d fps") % ((x + 500) / 1000))
+					return self.getServiceInfoString(info, iServiceInformation.sFrameRate, lambda x: _("%d fps") % ((x + 500) // 1000))
 				elif self.type == self.VPID:
 					return self.getServiceInfoString(info, iServiceInformation.sVideoPID)
 		return ""
