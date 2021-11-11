@@ -80,7 +80,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 
         def AskForUpdate(self):
 		message = _("Do you want to update your receiver?")
-		self.session.openWithCallback(self.startActualUpdate, MessageBox, message, picon=MessageBox.TYPE_ERROR)
+		self.session.openWithCallback(self.startActualUpdate, MessageBox, message, picon=MessageBox.TYPE_YESNO)
 
 	def getLatestImageTimestamp(self):
 		def gettime(url):
