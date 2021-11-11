@@ -2309,7 +2309,7 @@ class MovieSelection(Screen, HelpableScreen, SelectionEventInfo, InfoBarBase, Pr
 		Tools.Trashcan.cleanAll(os.path.split(current.getPath())[0])
 
 	def showNetworkMounts(self):
-		import NetworkSetup
+		from Screens import NetworkSetup
 		self.session.open(NetworkSetup.NetworkMountsMenu)
 
 	def showDeviceMounts(self):
