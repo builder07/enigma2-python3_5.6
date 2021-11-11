@@ -197,20 +197,6 @@ class OpenVisionInformation(Screen):
 
 		OpenVisionInformationText += "\n"
 
-		if config.misc.OVupdatecheck.value is True:
-			try:
-				if boxbranding.getVisionVersion().startswith("10"):
-					ovurl = "https://raw.githubusercontent.com/Hains/openvision-dm920-python3/master/meta-openvision/conf/distro/openvision.conf"
-				else:
-					ovurl = "https://raw.githubusercontent.com/OpenVisionE2/openvision-oe/develop/meta-openvision/conf/distro/revision.conf"
-				ovresponse = urllib.request.urlopen(ovurl)
-				ovrevision = ovresponse.read().decode()
-				ovrevisionupdate = ovrevision.split('r')[1][:3]
-			except Exception as e:
-				ovrevisionupdate = _("Requires internet connection")
-		else:
-			ovrevisionupdate = _("Disabled in configuration")
-
 		if fileExists("/etc/openvision/visionversion"):
 			visionversion = open("/etc/openvision/visionversion", "r").read().strip()
 			OpenVisionInformationText += _("Open Vision version: ") + visionversion + "\n"
@@ -219,9 +205,9 @@ class OpenVisionInformation(Screen):
 
 		if fileExists("/etc/openvision/visionrevision"):
 			visionrevision = open("/etc/openvision/visionrevision", "r").read().strip()
-			OpenVisionInformationText += _("Open Vision revision: ") + visionrevision + " " + _("(Latest revision on github: ") + str(ovrevisionupdate) + ")" + "\n"
+			OpenVisionInformationText += _("Open Vision revision: ") + visionrevision + "\n"
 		else:
-			OpenVisionInformationText += _("Open Vision revision: ") + boxbranding.getVisionRevision() + " " + _("(Latest revision on github: ") + str(ovrevisionupdate) + ")" + "\n"
+			OpenVisionInformationText += _("Open Vision revision: ") + boxbranding.getVisionRevision() + "\n"
 
 		if fileExists("/etc/openvision/visionlanguage"):
 			visionlanguage = open("/etc/openvision/visionlanguage", "r").read().strip()
