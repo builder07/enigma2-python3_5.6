@@ -5,8 +5,6 @@ from Components.Network import iNetwork
 import enigma
 
 import os
-from pythonwifi.iwlibs import Wireless, getWNICnames
-from pythonwifi import flags as wififlags
 
 list = ["WPA/WPA2", "WPA2", "WPA", "WEP", "Unencrypted"]
 
