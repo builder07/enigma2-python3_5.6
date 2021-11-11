@@ -599,7 +599,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 			return ""
 		fps = info.getInfo(iServiceInformation.sFrameRate)
 		if fps > 0:
-			return "%6.3f" % (fps / 1000.)
+			return "%6.3f" % (fps // 1000.)
 		return ""
 
 	def cancel(self):
