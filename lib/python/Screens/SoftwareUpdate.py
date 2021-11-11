@@ -69,7 +69,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 
 		self.activity = 0
 		self.activityTimer = eTimer()
-		self.activityTimer.callback.append(self.checkTraficLight)
+		self.activityTimer.callback.append(self.AskForUpdate)
 		self.activityTimer.callback.append(self.doActivityTimer)
 		self.activityTimer.start(100, True)
 
@@ -78,74 +78,9 @@ class UpdatePlugin(Screen, ProtectedScreen):
 			(not config.ParentalControl.config_sections.main_menu.value and not config.ParentalControl.config_sections.configuration.value or hasattr(self.session, 'infobar') and self.session.infobar is None) and\
 			config.ParentalControl.config_sections.software_update.value
 
-	def checkTraficLight(self):
-		self.activityTimer.callback.remove(self.checkTraficLight)
-		self.activityTimer.start(100, False)
-		status = None
-		message = None
-		abort = False
-		picon = MessageBox.TYPE_ERROR
-		url = "https://openvision.tech/trafficlight"
-
-		# try to fetch the trafficlight json from the website
-		try:
-			status = dict(json.load(urlopen(url, timeout=5)))
-			print("[SoftwareUpdate] status is: ", status)
-		except:
-			pass
-
-		# process the status fetched
-		if status is not None:
-
-			try:
-				# get image version and machine name
-				machine = getBoxType()
-				version = open("/etc/issue").readlines()[-2].split()[1]
-
-				# do we have an entry for this version
-				if version in status and machine in status[version]['machines']:
-					if 'abort' in status[version]:
-						abort = status[version]['abort']
-					if 'from' in status[version]:
-						starttime = datetime.datetime.strptime(status[version]['from'], '%Y%m%d%H%M%S')
-					else:
-						starttime = datetime.datetime.now()
-					if 'to' in status[version]:
-						endtime = datetime.datetime.strptime(status[version]['to'], '%Y%m%d%H%M%S')
-					else:
-						endtime = datetime.datetime.now()
-					if (starttime <= datetime.datetime.now() and endtime >= datetime.datetime.now()):
-						message = str(status[version]['message'])
-
-				# check if we have per-language messages
-				if type(message) is dict:
-					lang = language.getLanguage()
-					if lang in message:
-						message = message[lang]
-					elif 'en_EN' in message:
-						message = message['en_EN']
-					else:
-						message = _("The current image might not be stable.\nFor more information see %s.") % ("openvision.tech")
-
-			except Exception as e:
-				print("[SoftwareUpdate] status error: ", str(e))
-				message = _("The current image might not be stable.\nFor more information see %s.") % ("openvision.tech")
-
-		# or display a generic warning if fetching failed
-		else:
-			message = _("The status of the current image could not be checked because %s can not be reached.") % ("openvision.tech")
-
-		# show the user the message first
-		if message is not None:
-			if abort:
-				self.session.openWithCallback(self.close, MessageBox, message, type=MessageBox.TYPE_ERROR, picon=picon)
-			else:
-				message += "\n\n" + _("Do you want to update your receiver?")
-				self.session.openWithCallback(self.startActualUpdate, MessageBox, message, picon=picon)
-
-		# no message, continue with the update
-		else:
-			self.startActualUpdate(True)
+        def AskForUpdate(self):
+		message = _("Do you want to update your receiver?")
+		self.session.openWithCallback(self.startActualUpdate, MessageBox, message, picon=MessageBox.TYPE_ERROR)
 
 	def getLatestImageTimestamp(self):
 		def gettime(url):
