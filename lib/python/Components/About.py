@@ -10,6 +10,7 @@ import struct
 from Components.Console import Console
 from Tools.Directories import fileExists
 from boxbranding import getSoCFamily
+from subprocess import PIPE, Popen
 
 socfamily = getSoCFamily()
 
@@ -348,6 +349,15 @@ def getBoxUptime():
 	except:
 		return '-'
 
+def getOpenSSLVersion():
+	process = Popen(("/usr/bin/openssl", "version"), stdout=PIPE, stderr=PIPE, universal_newlines=True)
+	stdout, stderr = process.communicate()
+	if process.returncode == 0:
+		data = stdout.strip().split()
+		if len(data) > 1 and data[0] == "OpenSSL":
+			return data[1]
+	print("[About] Get OpenSSL version failed.")
+	return _("Unknown")
 
 # For modules that do "from About import about"
 about = sys.modules[__name__]
