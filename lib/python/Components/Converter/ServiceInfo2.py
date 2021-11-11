@@ -126,7 +126,7 @@ class ServiceInfo2(Poll, Converter, object):
 				return " "
 			return str(xres)
 		elif self.type == self.Framerate:
-			return self.getServiceInfoString(info, iServiceInformation.sFrameRate, lambda x: "%d" % ((x + 500) / 1000))
+			return self.getServiceInfoString(info, iServiceInformation.sFrameRate, lambda x: "%d" % ((x + 500) // 1000))
 		elif self.type == self.Provider:
 			return self.getServiceInfoString(info, iServiceInformation.sProvider).upper()
 		return ""
