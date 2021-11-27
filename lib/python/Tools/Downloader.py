@@ -1,6 +1,6 @@
 from twisted.web import client
 from twisted.internet import reactor, defer
-from urlparse import urlparse
+# from urlparse import urlparse
 from enigma import getBoxType, getBoxBrand
 
 
