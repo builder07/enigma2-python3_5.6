@@ -26,7 +26,7 @@
 			<id val="information"/>
 			<item level="1" text="Service" entryID="service_info_screen"><screen module="ServiceInfo" screen="ServiceInfo"/></item>
 			<item level="0" text="About" entryID="about_screen"><screen module="About"/></item>
-			<item level="0" text="Open Vision" entryID="openvision_screen"><screen module="About" screen="OpenVisionInformation"/></item>
+			<item level="0" text="OpenFIX" entryID="openfix_screen"><screen module="About" screen="OpenFIXInformation"/></item>
 			<item level="0" text="DVB" entryID="dvb_screen"><screen module="About" screen="DVBInformation"/></item>
 			<item level="0" text="Geolocation" entryID="geolocation_screen"><screen module="About" screen="Geolocation"/></item>
 			<item level="0" text="Benchmark" entryID="benchmark_screen"><screen module="About" screen="BenchmarkInformation"/></item>
