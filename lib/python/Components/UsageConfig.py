@@ -42,14 +42,14 @@ def InitUsageConfig():
 	config.usage.hide_number_markers = ConfigYesNo(default=True)
 	config.usage.hide_number_markers.addNotifier(refreshServiceList)
 
-	config.usage.servicetype_icon_mode = ConfigSelection(default="1", choices=[("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
+	config.usage.servicetype_icon_mode = ConfigSelection(default="0", choices=[("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
 	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
 	config.usage.crypto_icon_mode = ConfigSelection(default="2", choices=[("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename"))])
 	config.usage.crypto_icon_mode.addNotifier(refreshServiceList)
 	config.usage.record_indicator_mode = ConfigSelection(default="3", choices=[("0", _("None")), ("1", _("Left from servicename")), ("2", _("Right from servicename")), ("3", _("Red colored"))])
 	config.usage.record_indicator_mode.addNotifier(refreshServiceList)
 
-	config.usage.virtualkeyBoard_style = ConfigSelection(default='OV', choices=[('OV', _('Open Vision')), ('e2', _('enigma2 default'))])
+	config.usage.virtualkeyBoard_style = ConfigSelection(default='e2', choices=[('e2', _('enigma2 default'))])
 
 	choicelist = [("-1", _("Disable"))]
 	for i in range(0, 1300, 100):
@@ -1344,7 +1344,7 @@ def InitUsageConfig():
 	config.autolanguage.subtitle_defaultdvb = ConfigYesNo(default=False)
 	config.autolanguage.subtitle_usecache = ConfigYesNo(default=True)
 
-	config.visionsettings = ConfigSubsection()
+#	config.visionsettings = ConfigSubsection()
 
 	config.oscaminfo = ConfigSubsection()
 	if SystemInfo["OScamInstalled"] or SystemInfo["NCamInstalled"]:
