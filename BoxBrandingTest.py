@@ -1,7 +1,7 @@
 import boxbranding
 
-print("getVisionVersion=%s<" % boxbranding.getVisionVersion())
-print("getVisionRevision=%s<" % boxbranding.getVisionRevision())
+print("getOpenFIXVersion=%s<" % boxbranding.getOpenFIXVersion())
+print("getOpenFIXRevision=%s<" % boxbranding.getOpenFIXRevision())
 print("getDeveloperName=%s<" % boxbranding.getDeveloperName())
 print("getBoxBrand=%s<" % boxbranding.getBoxBrand())
 print("getOEVersion=%s<" % boxbranding.getOEVersion())
