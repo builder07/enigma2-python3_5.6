@@ -29,7 +29,7 @@
 
 static const char *crash_emailaddr =
 #ifndef CRASH_EMAILADDR
-	"the Open Vision forum (https://forum.openvision.tech) or https://github.com/OpenVisionE2";
+	"the OpenFIX forum (https://gisclub.tv) or https://github.com/OpenFIXE2";
 #else
 	CRASH_EMAILADDR;
 #endif
@@ -203,7 +203,7 @@ void bsodFatal(const char *component)
 		strftime(tm_str, sizeof(tm_str), "%a %b %_d %T %Y", &tm);
 
 		fprintf(f,
-			"Open Vision enigma2 crash log\n\n"
+			"OpenFIX enigma2 crash log\n\n"
 			"crashdate=%s\n"
 			"compiledate=%s\n"
 			"skin=%s\n"
@@ -219,23 +219,23 @@ void bsodFatal(const char *component)
 			enigma2_rev,
 			component);
 
-		stringFromFile(f, "stbmodel", "/etc/openvision/model");
-		stringFromFile(f, "stbbrand", "/etc/openvision/brand");
-		stringFromFile(f, "stbplatform", "/etc/openvision/platform");
+		stringFromFile(f, "stbmodel", "/etc/openfix/model");
+		stringFromFile(f, "stbbrand", "/etc/openfix/brand");
+		stringFromFile(f, "stbplatform", "/etc/openfix/platform");
 		stringFromFile(f, "kernelcmdline", "/proc/cmdline");
 		stringFromFile(f, "nimsockets", "/proc/bus/nim_sockets");
-		stringFromFile(f, "distro", "/etc/openvision/distro");
-		stringFromFile(f, "oe", "/etc/openvision/oe");
-		stringFromFile(f, "python", "/etc/openvision/python");
-		stringFromFile(f, "mediaservice", "/etc/openvision/mediaservice");
-		stringFromFile(f, "multilib", "/etc/openvision/multilib");
-		stringFromFile(f, "architecture", "/etc/openvision/architecture");
-		stringFromFile(f, "socfamily", "/etc/openvision/socfamily");
-		stringFromFile(f, "visionversion", "/etc/openvision/visionversion");
-		stringFromFile(f, "visionrevision", "/etc/openvision/visionrevision");
-		stringFromFile(f, "visionlanguage", "/etc/openvision/visionlanguage");
-		stringFromFile(f, "compiledby", "/etc/openvision/developername");
-		stringFromFile(f, "feedsurl", "/etc/openvision/feedsurl");
+		stringFromFile(f, "distro", "/etc/openfix/distro");
+		stringFromFile(f, "oe", "/etc/openfix/oe");
+		stringFromFile(f, "python", "/etc/openfix/python");
+		stringFromFile(f, "mediaservice", "/etc/openfix/mediaservice");
+		stringFromFile(f, "multilib", "/etc/openfix/multilib");
+		stringFromFile(f, "architecture", "/etc/openfix/architecture");
+		stringFromFile(f, "socfamily", "/etc/openfix/socfamily");
+		stringFromFile(f, "openfixversion", "/etc/openfix/openfixversion");
+		stringFromFile(f, "openfixrevision", "/etc/openfix/openfixrevision");
+		stringFromFile(f, "openfixlanguage", "/etc/openfix/openfixlanguage");
+		stringFromFile(f, "compiledby", "/etc/openfix/developername");
+		stringFromFile(f, "feedsurl", "/etc/openfix/feedsurl");
 
 		/* dump the log ringbuffer */
 		fprintf(f, "\n\n");
