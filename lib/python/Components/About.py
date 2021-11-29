@@ -157,7 +157,13 @@ def getCPUSerial():
 			if line[0:6] == 'Serial':
 				return line[10:26]
 		return "0000000000000000"
-
+		
+def getImageTypeString():
+	try:
+		image_type = open("/etc/issue").readlines()[-2].strip("openfix-")[:-6]
+		return image_type.capitalize()
+	except:
+		return _("undefined")		
 
 def getCPUInfoString():
 	try:
@@ -358,6 +364,42 @@ def getOpenSSLVersion():
 			return data[1]
 	print("[About] Get OpenSSL version failed.")
 	return _("Unknown")
+	
+def getGlibcVersion():
+	process = Popen(("/lib/libc.so.6"), stdout=PIPE, stderr=PIPE, universal_newlines=True)
+	stdout, stderr = process.communicate()
+	if process.returncode == 0:
+		for line in stdout.split("\n"):
+			if line.startswith("GNU C Library"):
+				data = line.split()[-1]
+				if data.endswith("."):
+					data = data[0:-1]
+				return data
+	print("[About] Get glibc version failed.")
+	return _("Unknown")
+
+
+def getGccVersion():
+	process = Popen(("/lib/libc.so.6"), stdout=PIPE, stderr=PIPE, universal_newlines=True)
+	stdout, stderr = process.communicate()
+	if process.returncode == 0:
+		for line in stdout.split("\n"):
+			if line.startswith("Compiled by GNU CC version"):
+				data = line.split()[-1]
+				if data.endswith("."):
+					data = data[0:-1]
+				return data
+	print("[About] Get gcc version failed.")
+	return _("Unknown")	
+
+def getIdea():
+		return _("BlackFish")
+
+def getEmail():
+		return _("blackfish.3654@gmail.com")
+		
+def getBrand():
+		return _("octagon")			
 
 # For modules that do "from About import about"
 about = sys.modules[__name__]
