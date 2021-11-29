@@ -5048,7 +5048,10 @@ msgid "Idea: "
 msgstr "Идея: "
 
 msgid "Donate: "
-msgstr "Поблагодарить: "
+msgstr "Поддержать проект: "
+
+msgid "Thanks: "
+msgstr "Благодарности: "
 
 msgid "Network configuration"
 msgstr "Конфигурация сети"
@@ -8296,7 +8299,7 @@ msgstr "T2MI RAW режим"
 
 #. TRANSLATORS: Add here whatever should be shown in the "translator" about screen, up to 6 lines (use \n for newline)
 msgid "TRANSLATOR_INFO"
-msgstr "2022"
+msgstr "2021"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 level 1!"
