@@ -24,12 +24,35 @@ from Components.SystemInfo import SystemInfo
 from Tools.Geolocation import geolocation
 import urllib
 
+from boxbranding import getBoxType, getMachineBuild, getImageVersion, getImageType
+boxtype = getBoxType()
 
 class About(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.setTitle(_("About"))
 		hddsplit = skin.parameters.get("AboutHddSplit", 0)
+
+		if boxtype == 'sf8008':
+			BoxName = "Octagon SF8008 4K UHD"
+		elif boxtype == 'ustym4kpro':
+			BoxName = "uClan Ustym 4K PRO"	
+		elif boxtype == 'multibox':
+			BoxName = "AX MULTIBOX Combo"
+		elif boxtype == 'viper4k':
+			BoxName = "AMIKO Viper 4K"	
+		elif boxtype == 'ax60':
+			BoxName = "AX 4KBOX HD60"				
+		else:
+			BoxName = about.getHardwareTypeString()
+
+		self.setTitle(_("About") + " " + BoxName)
+		
+		AboutHeader = _("About") + " " + BoxName
+		self["AboutHeader"] = StaticText(AboutHeader)
+		
+		#AboutText = BoxName + " - " + ImageType + serial + "\n"	
+		AboutText = _("Model: ") + BoxName + "\n"
 
 		model = getBoxType()
 
@@ -38,8 +61,8 @@ class About(Screen):
 		stbplatform = boxbranding.getMachineBuild()
 
 		AboutText = _("Hardware: ") + model + "\n"
-		if stbplatform != model:
-			AboutText += _("Platform: ") + stbplatform + "\n"
+		# if stbplatform != model:
+			# AboutText += _("Platform: ") + stbplatform + "\n"
 		if procmodel != model:
 			AboutText += _("Proc model: ") + procmodel + "\n"
 
@@ -53,7 +76,7 @@ class About(Screen):
 		if hwserial is not None and hwserial == "unknown":
 			AboutText += _("Hardware serial: ") + about.getCPUSerial() + "\n"
 
-		AboutText += _("Brand/Meta: ") + getBoxBrand() + "\n"
+		AboutText += _("Brand/Meta: ") + about.getBrand() + "\n"        
 
 		AboutText += "\n"
 		cpu = about.getCPUInfoString()
@@ -72,6 +95,9 @@ class About(Screen):
 
 		# [WanWizard] Removed until we find a reliable way to determine the installation date
 		# AboutText += _("Installed: ") + about.getFlashDateString() + "\n"
+
+		AboutText += "\n"
+		AboutText += _("Image: OpenFIX") + about.getImageTypeString() + "\n"
 
 		EnigmaVersion = about.getEnigmaVersionString()
 		EnigmaVersion = EnigmaVersion.rsplit("-", EnigmaVersion.count("-") - 2)
@@ -95,8 +121,8 @@ class About(Screen):
 		AboutText += "\n"
 
 		AboutText += _("Drivers version: ") + about.getDriverInstalledDate() + "\n"
-		AboutText += _("Kernel version: ") + boxbranding.getKernelVersion() + "\n"
-
+		AboutText += _("Kernel version: ") + about.getKernelVersionString() + "\n"
+		AboutText += _("Python version: ") + about.getPythonVersionString() + "\n"
 		GStreamerVersion = _("GStreamer version: ") + about.getGStreamerVersionString(cpu).replace("GStreamer", "")
 		self["GStreamerVersion"] = StaticText(GStreamerVersion)
 		AboutText += "\n" + GStreamerVersion + "\n"
@@ -107,9 +133,9 @@ class About(Screen):
 
 		AboutText += "\n"
 		AboutText += _("OpenSSL version: ") + about.getOpenSSLVersion() + "\n"
-
-		AboutText += "\n"
-		AboutText += _("Python version: ") + about.getPythonVersionString() + "\n"
+		AboutText += _("GCC version: ") + about.getGccVersion() + "\n"
+		AboutText += _("Glibc version: ") + about.getGlibcVersion() + "\n"
+		
 		AboutText += "\n"
 
 		fp_version = getFPVersion()
@@ -159,6 +185,13 @@ class About(Screen):
 		for x in about.GetIPsFromNetworkInterfaces():
 			AboutText += "\n" + x[0] + ": " + x[1]
 		AboutText += '\n\n' + _("Uptime") + ": " + about.getBoxUptime()
+		
+		AboutText += "\n"
+		AboutText += "\n"
+		
+		AboutText += _("Additional image information: ") + "\n"
+		AboutText += _("Idea: ") + about.getIdea() + "\n"
+		AboutText += _("E-mail: ") + about.getEmail() + "\n"
 
 		self["AboutScrollLabel"] = ScrollLabel(AboutText)
 		self["key_green"] = Button(_("Translations"))
