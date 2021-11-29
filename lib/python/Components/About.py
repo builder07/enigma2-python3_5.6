@@ -401,5 +401,11 @@ def getEmail():
 def getBrand():
 		return _("octagon")			
 
+def getDonate():
+		return _("Z541154775569, R610636086219")
+		
+def getThanks():
+		return _("gisclub.tv, openpli.org, opena.tv, ShadowA, moskvish")	
+
 # For modules that do "from About import about"
 about = sys.modules[__name__]
