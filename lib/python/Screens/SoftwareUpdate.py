@@ -36,7 +36,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		Screen.__init__(self, session)
 		ProtectedScreen.__init__(self)
 
-		self.sliderPackages = {"enigma2": 1, "openvision": 2}
+		self.sliderPackages = {"enigma2": 1, "openfix": 2}
 
 		self.setTitle(_("Software update"))
 		self.slider = Slider(0, 4)
@@ -85,7 +85,7 @@ class UpdatePlugin(Screen, ProtectedScreen):
 		message = None
 		abort = False
 		picon = MessageBox.TYPE_ERROR
-		url = "https://openvision.tech/trafficlight"
+		url = "https://gisclub.tv/trafficlight"
 
 		# try to fetch the trafficlight json from the website
 		try:
@@ -125,15 +125,15 @@ class UpdatePlugin(Screen, ProtectedScreen):
 					elif 'en_EN' in message:
 						message = message['en_EN']
 					else:
-						message = _("The current image might not be stable.\nFor more information see %s.") % ("openvision.tech")
+						message = _("The current image might not be stable.\nFor more information see %s.") % ("gisclub.tv")
 
 			except Exception as e:
 				print("[SoftwareUpdate] status error: ", str(e))
-				message = _("The current image might not be stable.\nFor more information see %s.") % ("openvision.tech")
+				message = _("The current image might not be stable.\nFor more information see %s.") % ("gisclub.tv")
 
 		# or display a generic warning if fetching failed
 		else:
-			message = _("The status of the current image could not be checked because %s can not be reached.") % ("openvision.tech")
+			message = _("The status of the current image could not be checked because %s can not be reached.") % ("gisclub.tv")
 
 		# show the user the message first
 		if message is not None:
