@@ -1087,14 +1087,13 @@ class CommitInfo(Screen):
 
 		self.project = 0
 		self.projects = [
-			("https://api.github.com/repos/OpenFIXE2/enigma2-openfix/commits" + branch, "Enigma2 - OpenFIX"),
-			(oegiturl, "OE - OpenFIX"),
-			("https://api.github.com/repos/OpenFIXE2/enigma2-plugins/commits", "Enigma2 plugins"),
-			("https://api.github.com/repos/OpenFIXE2/alliance-plugins/commits", "Alliance plugins"),
-			("https://api.github.com/repos/OpenFIXE2/OpenWebif/commits", "Open WebIF"),
-			("https://api.github.com/repos/OpenFIXE2/openfix-core-plugin/commits", "OpenFIX core plugin"),
-			("https://api.github.com/repos/OpenFIXE2/BackupSuite/commits", "Backup Suite plugin"),
-			("https://api.github.com/repos/OpenFIXE2/OctEtFHD-skin/commits", "OctEtFHD skin")
+			("https://api.github.com/repos/openpli/enigma2/commits" + branch, "Enigma2"),
+			("https://api.github.com/repos/openpli/openpli-oe-core/commits" + branch, "Openpli Oe Core"),
+			("https://api.github.com/repos/openpli/enigma2-plugins/commits", "Enigma2 Plugins"),
+			("https://api.github.com/repos/openpli/aio-grab/commits", "Aio Grab"),
+			("https://api.github.com/repos/openpli/enigma2-plugin-extensions-epgimport/commits", "Plugin EPGImport"),
+			("https://api.github.com/repos/littlesat/skin-PLiHD/commits", "Skin PLi HD"),
+			("https://api.github.com/repos/E2OpenPlugins/e2openplugin-OpenWebif/commits", "OpenWebif"),
 		]
 		self.cachedProjects = {}
 		self.Timer = eTimer()
