@@ -21,10 +21,11 @@ from Components.Console import Console
 from Components.Pixmap import MultiPixmap
 from Components.Network import iNetwork
 from Components.SystemInfo import SystemInfo
+from Tools.Multiboot import getCurrentImage
 from Tools.Geolocation import geolocation
 import urllib
-
-from boxbranding import getBoxType, getMachineBuild, getImageVersion, getImageType
+from boxbranding import getBoxType, getMachineBuild, getMachineBrand, getMachineName, getImageVersion, getImageBuild, getDriverDate, getImageType
+# from boxbranding import getBoxType, getMachineBuild, getImageVersion, getImageType
 boxtype = getBoxType()
 
 class About(Screen):
@@ -76,8 +77,9 @@ class About(Screen):
 		if hwserial is not None and hwserial == "unknown":
 			AboutText += _("Hardware serial: ") + about.getCPUSerial() + "\n"
 
-		AboutText += _("Brand/Meta: ") + about.getBrand() + "\n"        
-
+		# AboutText += _("Brand/Meta: ") + about.getBrand() + "\n"        
+		AboutText += _("Brand: ") + getMachineBrand() + "\n"
+		
 		AboutText += "\n"
 		cpu = about.getCPUInfoString()
 		AboutText += _("CPU: ") + cpu + "\n"
@@ -88,7 +90,15 @@ class About(Screen):
 			AboutText += _("SoC family: ") + socfamily + "\n"
 
 		AboutText += _("CPU architecture: ") + about.getCPUArch() + "\n"
+		fp_version = getFPVersion()
+		if fp_version is None or fp_version == "unknown":
+			fp_version = ""
+		else:
+			fp_version = _("Front processor version: %s") % fp_version
 
+			AboutText += fp_version + "\n"
+
+		self["FPVersion"] = StaticText(fp_version)
 		if not boxbranding.getDisplayType().startswith(' '):
 			AboutText += "\n"
 			AboutText += _("Display type: ") + boxbranding.getDisplayType() + "\n"
@@ -96,7 +106,21 @@ class About(Screen):
 		# [WanWizard] Removed until we find a reliable way to determine the installation date
 		# AboutText += _("Installed: ") + about.getFlashDateString() + "\n"
 
-		AboutText += "\n"
+		if SystemInfo["canMultiBoot"]:
+			slot = image = getCurrentImage()
+			bootmode = ""
+			part = _("eMMC slot %s") %slot
+			if "sda" in SystemInfo["canMultiBoot"][slot]['device']:
+				if slot > 4:
+					image -=4
+				else:
+					image -=1
+				if getMachineBuild() in ("sf8008", "ustym4kpro", "multibox", "viper4k", "ax60"):
+					part = _("SD-card slot %s") % image
+				else:
+					part = _("USB-device slot %s") % image
+		AboutText += _("Selected Image: %s") % _("STARTUP_") + str(slot) + "  (" + part + ") \n" + "\n"
+
 		AboutText += _("Image: OpenFIX") + about.getImageTypeString() + "\n"
 
 		EnigmaVersion = about.getEnigmaVersionString()
@@ -113,7 +137,8 @@ class About(Screen):
 		AboutText += ImageVersion + "\n"
 		AboutText += _("Enigma2 (re)starts: %d\n") % config.misc.startCounter.value
 		AboutText += _("Enigma2 debug level: %d\n") % eGetEnigmaDebugLvl()
-
+		AboutText += _('Skin & Resolution: %s (%sx%s)\n') % (config.skin.primary_skin.value.split('/')[0], getDesktop(0).size().width(), getDesktop(0).size().height())
+		
 		if fileExists("/etc/openfix/mediaservice"):
 			mediaservice = open("/etc/openfix/mediaservice", "r").read().strip()
 			AboutText += _("Media service: ") + mediaservice.replace("enigma2-plugin-systemplugins-", "") + "\n"
@@ -135,20 +160,6 @@ class About(Screen):
 		AboutText += _("OpenSSL version: ") + about.getOpenSSLVersion() + "\n"
 		AboutText += _("GCC version: ") + about.getGccVersion() + "\n"
 		AboutText += _("Glibc version: ") + about.getGlibcVersion() + "\n"
-		
-		AboutText += "\n"
-
-		fp_version = getFPVersion()
-		if fp_version is None or fp_version == "unknown":
-			fp_version = ""
-		else:
-			fp_version = _("Front processor version: %s") % fp_version
-
-			AboutText += fp_version + "\n"
-
-		self["FPVersion"] = StaticText(fp_version)
-
-		AboutText += _('Skin & Resolution: %s (%sx%s)\n') % (config.skin.primary_skin.value.split('/')[0], getDesktop(0).size().width(), getDesktop(0).size().height())
 
 		self["TunerHeader"] = StaticText(_("Detected NIMs:"))
 		AboutText += "\n"
@@ -1078,7 +1089,7 @@ class CommitInfo(Screen):
 		try:
 			branch = "?sha=" + "-".join(about.getEnigmaVersionString().split("-")[3:])
 		except:
-			branch = ""
+		        branch = ""
 
 		if boxbranding.getOpenFIXVersion().startswith("10"):
 			oegiturl = "https://api.github.com/repos/OpenFIXE2/openfix-development-platform/commits"
@@ -1087,13 +1098,13 @@ class CommitInfo(Screen):
 
 		self.project = 0
 		self.projects = [
-			("https://api.github.com/repos/openpli/enigma2/commits" + branch, "Enigma2"),
-			("https://api.github.com/repos/openpli/openpli-oe-core/commits" + branch, "Openpli Oe Core"),
-			("https://api.github.com/repos/openpli/enigma2-plugins/commits", "Enigma2 Plugins"),
-			("https://api.github.com/repos/openpli/aio-grab/commits", "Aio Grab"),
-			("https://api.github.com/repos/openpli/enigma2-plugin-extensions-epgimport/commits", "Plugin EPGImport"),
-			("https://api.github.com/repos/littlesat/skin-PLiHD/commits", "Skin PLi HD"),
-			("https://api.github.com/repos/E2OpenPlugins/e2openplugin-OpenWebif/commits", "OpenWebif"),
+			("https://api.github.com/repos/OpenFIXE2/enigma2-openfix/commits" + branch, "Enigma2 - OpenFIX"),
+			(oegiturl, "OE - OpenFIX"),
+			("https://api.github.com/repos/OpenFIXE2/enigma2-plugins/commits", "Enigma2 plugins"),
+			("https://api.github.com/repos/OpenFIXE2/alliance-plugins/commits", "Alliance plugins"),
+			("https://api.github.com/repos/OpenFIXE2/OpenWebif/commits", "Open WebIF"),
+			("https://api.github.com/repos/OpenFIXE2/openfix-core-plugin/commits", "OpenFIX core plugin"),
+			("https://api.github.com/repos/OpenFIXE2/BackupSuite/commits", "Backup Suite plugin"),
 		]
 		self.cachedProjects = {}
 		self.Timer = eTimer()
