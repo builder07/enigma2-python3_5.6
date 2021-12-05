@@ -457,6 +457,35 @@ class DVBInformation(Screen):
 				"down": self["AboutScrollLabel"].pageDown
 			})
 
+class QRCode(Screen):
+	def __init__(self, session):
+                 Screen.__init__(self, session)
+                 self.setTitle(_("QR code"))
+                 self["key_red"] = Button(_("Close"))
+                 self["key_green"] = Button(_("QR code open"))
+                 self["Info"] = StaticText(_("In order to go to the image support forum, to learn news or ask questions, it is necessary to open a QR code and point a smartphone camera to it."))
+                 self["actions"] = ActionMap(["ColorActions", "SetupActions", "DirectionActions"],
+			{
+				"cancel": self.close,
+				"ok": self.close,
+                                 "green": self.showForQRCodeOpen
+			})	
+		
+	def showForQRCodeOpen(self):
+		self.session.open(ForQRCodeOpen)
+			
+class ForQRCodeOpen(Screen):
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.setTitle(_("QR code open"))
+
+		self["key_red"] = Button(_("Cancel"))
+
+		self["actions"] = ActionMap(["SetupActions"],
+			{
+				"cancel": self.close,
+				"ok": self.close
+			})
 
 class Geolocation(Screen):
 	def __init__(self, session):
